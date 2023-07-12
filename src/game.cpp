@@ -1,10 +1,3 @@
-//
-//	*game.cpp
-//
-//	KaissouDev | Eat-the-Mushroom 
-//	(c) 2023
-//
-
 #include "game.hpp"
 #include "main.hpp"
 #include "player_rotation.hpp"
@@ -49,19 +42,14 @@ void Game::Gameloop(){
         
         int currentTime = GetTime() - startTime;
         int timeLeft = 10 - currentTime;
-        if (timeLeft <= 0)
-        {
-            // Le timer est terminé, faire quelque chose ici
-            // Par exemple, afficher un message à l'écran
+        if (timeLeft <= 0){
             UnloadTexture(player);
             UnloadTexture(mushroom);
             ClearBackground(WHITE);
             DrawText("Game-Over ...", 269, 75, 42, RED);
 
         }
-        else
-        {
-            // Afficher le temps restant
+        else{
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
         }
 

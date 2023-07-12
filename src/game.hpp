@@ -1,10 +1,3 @@
-//
-//	*game.hpp
-//
-//	KaissouDev | Eat-the-Mushroom 
-//	(c) 2023
-//
-
 #include "main.hpp"
 
 class Game{
@@ -22,8 +15,7 @@ class Game{
         void Gameloop();
         void TitleScreen();
         void DrawObject();
-        static void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation )
-        {
+        static void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation ){
 	        Vector2 newPosition = position;
 	        switch (rotation) {
 	            case 0:

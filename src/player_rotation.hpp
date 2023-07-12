@@ -1,16 +1,8 @@
-//
-//	*player_rotation.html
-//
-//	KaissouDev | Eat-the-Mushroom 
-//	(c) 2023
-//
-
 #include "main.hpp"
 
 class PlayerRotation{
     public:
-        enum PlayerDirectionEnum
-        {  
+        enum PlayerDirectionEnum{  
             RIGHT = 0b00010000,
             LEFT = 0b00100000,
             UP = 0b01000000,
@@ -21,8 +13,7 @@ class PlayerRotation{
             DOWN_LEFT = DOWN | LEFT
         };
 
-        static void manageRotation( uint16_t &rotation, uint8_t rotationFlags )
-        {
+        static void manageRotation( uint16_t &rotation, uint8_t rotationFlags ){
             switch (rotationFlags) {
                 case PlayerDirectionEnum::RIGHT:
                     rotation = 0;
@@ -50,8 +41,7 @@ class PlayerRotation{
             }
         }
 
-        static uint8_t manageMovement( Vector2 &position, const float &playerSpeed, float &deltaTime, Texture2D player )
-        {
+        static uint8_t manageMovement( Vector2 &position, const float &playerSpeed, float &deltaTime, Texture2D player ){
             uint8_t rotationFlags = 0;
                 //managing player movement and save rotation flags.
                 if (IsKeyDown(KEY_RIGHT) && position.x + player.width / 2 < GetScreenWidth())
@@ -78,8 +68,7 @@ class PlayerRotation{
                 return rotationFlags;
         }
 
-        static void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation )
-        {
+        static void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation ){
             Vector2 newPosition = position;
             switch (rotation) {
             case  0:
