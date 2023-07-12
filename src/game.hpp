@@ -2,7 +2,14 @@
 
 class Game{
     public:
-        Texture2D mushroom;
+        void CreateWindow();
+        void Gameloop();
+        void TitleScreen();
+        void DrawObject();
+        void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation );
+        void RunGame();
+    private:
+		Texture2D mushroom;
         Texture2D player;
         Image icon;
         int PosX;
@@ -11,11 +18,4 @@ class Game{
 
         uint16_t playerRotation = 0;
         bool GameStarted;
-        void CreateWindow();
-        void Gameloop();
-        void TitleScreen();
-        void DrawObject();
-        void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation );
-        void RunGame();
-    private:
 };
