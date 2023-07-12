@@ -30,7 +30,7 @@ void Game::Gameloop(){
         float deltaTime = GetFrameTime();
         
         //TitleScreen();
-        ClearBackground(BLUE);
+        ClearBackground(GREEN);
         DrawObject();
         drawPlayer(player, position, playerRotation);
         uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, player);
@@ -58,7 +58,7 @@ void Game::Gameloop(){
             PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
             PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
 
-            mushroom = LoadTexture("res/mushroom.png");             
+            mushroom = LoadTexture("res/badguy.png");             
         }
         EndDrawing();
     }
@@ -67,13 +67,15 @@ void Game::Gameloop(){
 void Game::CreateWindow(){
     SetTraceLogLevel(LOG_NONE);
     
-    InitWindow(800, 600, "Eat-the-Mushroom");
+    InitWindow(800, 600, "Galaga");
+    //ToggleFullscreen();
+    //HideCursor();
     
     // set the window icon
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
-    mushroom = LoadTexture("res/mushroom.png");
+    mushroom = LoadTexture("res/badguy.png");
     player = LoadTexture("res/player.png");
     
     Gameloop();
