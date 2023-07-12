@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "main.hpp"
+#include "player_rotation.hpp"
 
 enum PlayerDirectionEnum{
 	RIGHT = 0b00010000,
@@ -12,7 +13,7 @@ enum PlayerDirectionEnum{
 	DOWN_LEFT = DOWN | LEFT
 };
 
-static void manageRotation( uint16_t &rotation, uint8_t rotationFlags ){
+void PlayerRotation::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	switch (rotationFlags) {
 		case PlayerDirectionEnum::RIGHT:
 		      rotation = 0;
@@ -40,25 +41,30 @@ static void manageRotation( uint16_t &rotation, uint8_t rotationFlags ){
 	}
 }
 
-static uint8_t manageMovement( Vector2 &position, const float &playerSpeed, float &deltaTime, Texture2D player ){
-	uint8_t rotationFlags = 0;
-	    //managing player movement and save rotation flags.
-            if (IsKeyDown(KEY_RIGHT) && position.x + player.width / 2 < GetScreenWidth()){
-		    rotationFlags |= PlayerDirectionEnum::RIGHT;
-		    position.x += playerSpeed * deltaTime;
-	    }
-            if (IsKeyDown(KEY_LEFT) && position.x + player.width / 2 > 0){
-		    rotationFlags |= PlayerDirectionEnum::LEFT;
-		    position.x -= playerSpeed * deltaTime;
-	    }
-            if (IsKeyDown(KEY_DOWN) && position.y + player.height / 2 < GetScreenHeight()){
-		    rotationFlags |= PlayerDirectionEnum::DOWN;
-		    position.y += playerSpeed * deltaTime;
-	    }
-            if (IsKeyDown(KEY_UP) && position.y + player.height / 2 > 0){
-		    rotationFlags |= PlayerDirectionEnum::UP;
-		    position.y -= playerSpeed * deltaTime;
-	    }
+uint8_t PlayerRotation::manageMovement(Vector2 &position, const float &playerSpeed, float &deltaTime, Texture2D player)
+{
+              uint8_t rotationFlags = 0;
+              // managing player movement and save rotation flags.
+              if (IsKeyDown(KEY_RIGHT) && position.x + player.width / 2 < GetScreenWidth())
+              {
+                  rotationFlags |= PlayerDirectionEnum::RIGHT;
+                  position.x += playerSpeed * deltaTime;
+              }
+              if (IsKeyDown(KEY_LEFT) && position.x + player.width / 2 > 0)
+              {
+                  rotationFlags |= PlayerDirectionEnum::LEFT;
+                  position.x -= playerSpeed * deltaTime;
+              }
+              if (IsKeyDown(KEY_DOWN) && position.y + player.height / 2 < GetScreenHeight())
+              {
+                  rotationFlags |= PlayerDirectionEnum::DOWN;
+                  position.y += playerSpeed * deltaTime;
+              }
+              if (IsKeyDown(KEY_UP) && position.y + player.height / 2 > 0)
+              {
+                  rotationFlags |= PlayerDirectionEnum::UP;
+                  position.y -= playerSpeed * deltaTime;
+              }
 
-	    return rotationFlags;
+              return rotationFlags;
 }
