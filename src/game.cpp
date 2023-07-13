@@ -1,10 +1,3 @@
-//
-//	*game.cpp
-//
-//	KaissouDev | Eat-the-Mushroom 
-//	(c) 2023
-//
-
 #include "game.hpp"
 #include "main.hpp"
 #include "player_rotation.hpp"
@@ -32,14 +25,12 @@ void Game::Gameloop(){
     PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
     PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
     int startTime = GetTime();
-
-
     while(!WindowShouldClose()){
         BeginDrawing();
         float deltaTime = GetFrameTime();
         
         //TitleScreen();
-        ClearBackground(BLUE);
+        ClearBackground(GREEN);
         DrawObject();
         drawPlayer(player, position, playerRotation);
         uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, player);
@@ -49,39 +40,26 @@ void Game::Gameloop(){
         
         int currentTime = GetTime() - startTime;
         int timeLeft = 10 - currentTime;
-        if (timeLeft <= 0)
-        {
-            // Le timer est terminé, faire quelque chose ici
-            // Par exemple, afficher un message à l'écran
+        if (timeLeft <= 0){
             UnloadTexture(player);
             UnloadTexture(mushroom);
             ClearBackground(WHITE);
             DrawText("Game-Over ...", 269, 75, 42, RED);
-
         }
-        else
-        {
-            // Afficher le temps restant
+        else{
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
         }
-
-
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
         if(distance < 50) {
-
             Health++;
 
             UnloadTexture(mushroom);
 
-       
             PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
             PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
 
-     
-            mushroom = LoadTexture("res/mushroom.png");
-                
+            mushroom = LoadTexture("res/badguy.png");             
         }
-
         EndDrawing();
     }
 }
@@ -89,13 +67,15 @@ void Game::Gameloop(){
 void Game::CreateWindow(){
     SetTraceLogLevel(LOG_NONE);
     
-    InitWindow(800, 600, "Eat-the-Mushroom");
+    InitWindow(800, 600, "Galaga");
+    //ToggleFullscreen();
+    //HideCursor();
     
     // set the window icon
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
-    mushroom = LoadTexture("res/mushroom.png");
+    mushroom = LoadTexture("res/badguy.png");
     player = LoadTexture("res/player.png");
     
     Gameloop();
@@ -103,6 +83,41 @@ void Game::CreateWindow(){
     UnloadTexture(mushroom);
     CloseWindow();
 }
+
+void Game::drawPlayer(Texture2D &Texture, Vector2 &position, uint16_t rotation){
+    Vector2 newPosition = position;
+	        switch (rotation) {
+	            case 0:
+	                break;
+	            case 180:
+	                newPosition.x += 64;
+	                newPosition.y += 64;
+	                break;
+	            case 270:
+	                newPosition.y += 64;
+	                break;
+	            case 90:
+	                newPosition.x += 64;
+	                break;
+	            case 45:
+	                newPosition.x += 32;
+	                break;
+	            case 135:
+	                newPosition.y += 32;
+	                newPosition.x += 64;
+	              break;
+	            case 315:
+	                newPosition.y += 32;
+	                break;
+	            case 225:
+	                newPosition.y += 64;
+	                newPosition.x += 32;
+	                break;
+            	default:
+	                break;
+	        };
+	        DrawTextureEx( Texture, newPosition, rotation, 1.0f, WHITE);
+    }
 
 void Game::RunGame(){
     CreateWindow();

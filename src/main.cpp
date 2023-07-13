@@ -1,10 +1,3 @@
-//
-//	*main.cpp
-//
-//	KaissouDev | Eat-the-Mushroom 
-//	(c) 2023
-//
-
 #include "main.hpp"
 #include "game.hpp"
 
