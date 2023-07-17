@@ -2,11 +2,6 @@
 
 [![Build](https://github.com/kaissouDev/Eat-the-Mushroom/actions/workflows/build.yml/badge.svg)](https://github.com/kaissouDev/Eat-the-Mushroom/actions/workflows/build.yml)
 
-Eat The Mushroom 
-is a game developed by myself, 
-it's my first real game in c++, 
-if you want you can contribute or make a pull request to help the project!
-
 ## <b>How To compile ?</b>
 
 - [Compile for windows](https://github.com/kaissouDev/Eat-the-Mushroom/blob/master/docs/compile-windows.md)
@@ -19,6 +14,7 @@ if you want you can contribute or make a pull request to help the project!
 
 
 ## <b>Credits</b>
-- [View Credits](https://github.com/colbySullivan/Galaga/blob/master/Credits.md)
+- [@KaissouDev](https://github.com/kaissouDev)
+Forked over from Eat-the-Mushroom. Used for its prebuilt infrasture for CMake and ninja.
 
 <div align="center"><b>---- colbySullivan (c) 2023 ----</b></div>
