@@ -6,8 +6,8 @@ warning cmake and ninja must be installed!
 the first thing you need to do is copy the repository with git
 
 ```
-git clone https://github.com/kaissouDev/Eat-the-Mushroom.git
-cd Eat-the-Mushroom
+git clone https://github.com/colbySullivan/Galaga.git
+cd Galaga
 ```
 
 then you'll need to update the git sub-modules 
@@ -33,7 +33,7 @@ ninja
 mkdir build
 cd build
 Cmake -G Ninja ..
-ninja
+ninjanmnn
 ```
 
 and if all went well the executable should be in "build/bin/Eat-the-mushroom
