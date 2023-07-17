@@ -6,6 +6,6 @@ cd build
 cmake ..
 cmake --build . --config Release
 cd Release
-./Eat-The-Mushroom
+./Galaga
 cd ..
 cd ..

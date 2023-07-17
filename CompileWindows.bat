@@ -8,6 +8,6 @@ cd build
 cmake ..
 cmake --build . --config Release
 cd Release
-.\Eat-The-Mushroom.exe
+.\Galaga.exe
 cd .. 
 cd ..

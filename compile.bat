@@ -4,6 +4,7 @@ if not exist "build" (
   mkdir build
 )
 
+git submodule update --init --recursive
 cd build
 Cmake -G Ninja ..
 ninja
