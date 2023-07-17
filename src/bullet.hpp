@@ -1,6 +1,8 @@
+#include "main.hpp"
+
 class Bullet{
 public:
-    void shoot();
+    void shoot(Vector2 &position);
 private:
 
 };

@@ -61,8 +61,9 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, const float &playerSpe
 		rotationFlags |= PlayerDirectionEnum::UP;
 		position.y -= playerSpeed * deltaTime;
 	}
-	if (IsKeyDown(KEY_UP)){
-		
+	if (IsKeyDown(KEY_SPACE)){
+		Bullet gun;
+		gun.shoot(position);
 	}
 	return rotationFlags;
 }

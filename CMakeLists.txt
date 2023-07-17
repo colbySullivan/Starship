@@ -29,6 +29,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/game.cpp
     src/player_rotation.cpp
+    src/bullet.cpp
 )
 
 # Link the 3rdparty library to the executable target
