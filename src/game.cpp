@@ -67,7 +67,7 @@ void Game::Gameloop(){
 void Game::CreateWindow(){
     SetTraceLogLevel(LOG_NONE);
     
-    InitWindow(800, 600, "Galaga");
+    InitWindow(800, 600, "Starship");
     //ToggleFullscreen();
     //HideCursor();
     

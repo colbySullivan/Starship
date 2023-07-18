@@ -6,7 +6,7 @@ warning cmake and ninja must be installed!
 the first thing you need to do is copy the repository with git
 
 ```
-git clone https://github.com/colbySullivan/Galaga.git
+git clone https://github.com/colbySullivan/Starship.git
 cd Galaga
 ```
 
