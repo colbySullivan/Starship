@@ -1,7 +1,6 @@
 #include "game.hpp"
 #include "main.hpp"
 #include "player_rotation.hpp"
-#include "bullet.hpp"
 
 enum PlayerDirectionEnum{
 	RIGHT = 0b00010000,
@@ -42,7 +41,7 @@ void PlayerRotation::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	}
 }
 
-uint8_t PlayerRotation::manageMovement(Vector2 &position, const float &playerSpeed, float &deltaTime, Texture2D player){
+uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D player){
 	uint8_t rotationFlags = 0;
 	// managing player movement and save rotation flags.
 	if (IsKeyDown(KEY_RIGHT)){
@@ -62,8 +61,11 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, const float &playerSpe
 		position.y -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_SPACE)){
-		Bullet gun;
-		gun.shoot(position);
+		ship.shoot(position);
+		ship.speed(playerSpeed);
+	}
+	if (IsKeyUp(KEY_SPACE)){
+		playerSpeed = 300.0f; // reset speed after space
 	}
 	return rotationFlags;
 }

@@ -21,7 +21,7 @@ void Game::DrawObject(){
 void Game::Gameloop(){
     PlayerRotation pr;
     Vector2 position = {0, 500};
-    const float playerSpeed = 300.0f;
+    float playerSpeed = 300.0f;
     Health = 0;
     PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
     PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
@@ -71,6 +71,7 @@ void Game::Gameloop(){
         }
         else{
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
+            UnloadTexture(background);
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
         if(distance < 50) {
