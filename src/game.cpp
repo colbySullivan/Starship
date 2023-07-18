@@ -5,6 +5,7 @@
 
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
+    DrawTexture(background, GetScreenWidth()/2, GetScreenHeight()/2, WHITE);
     DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
@@ -48,6 +49,7 @@ void Game::Gameloop(){
         UpdateCameraCenter(&camera, position, deltaTime, GetScreenWidth(), GetScreenHeight());
 
         //TitleScreen();
+        background = LoadTexture("res/back.jpg"); 
         ClearBackground(GREEN);
         BeginMode2D(camera);
 

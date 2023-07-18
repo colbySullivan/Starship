@@ -12,6 +12,7 @@ class Game{
     private:
 		Texture2D mushroom;
         Texture2D user;
+        Texture2D background;
         Camera2D camera;
         Image icon;
         int PosX;
