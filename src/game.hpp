@@ -10,7 +10,7 @@ class Game{
         void RunGame();
         void UpdateCameraCenter(Camera2D *camera, Vector2 position);
     private:
-		Texture2D mushroom;
+		Texture2D spacegoomba;
         Texture2D user;
         Texture2D background;
         Vector2 midscreen;
