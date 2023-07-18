@@ -34,11 +34,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 As an exception, if, as a result of your compiling your source code, portions of this Software are embedded into a machine-executable object form of such source code, you may redistribute such embedded portions in such object form without including the above copyright and permission notices.
 ```
 
-## Eat-The-Mushroom (MIT) :
+## Starship (MIT) :
 ```
 MIT License
 
-Copyright (c) 2023 kaissouDev
+Copyright (c) 2023 colbySullivan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
