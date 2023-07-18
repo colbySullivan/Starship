@@ -5,6 +5,7 @@
 
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
+    DrawTexture(background, GetScreenWidth()/2, GetScreenHeight()/2, WHITE);
     DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
@@ -25,15 +26,36 @@ void Game::Gameloop(){
     PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
     PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
     int startTime = GetTime();
+
+    // Initialize camera
+    camera = { 0 };
+    camera.target = position;
+    camera.offset = (Vector2){ GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
+    camera.rotation = 0.0f;
+    camera.zoom = 1.0f;
+    int cameraOption = 0; // Default center
+
     while(!WindowShouldClose()){
-        BeginDrawing();
-        float deltaTime = GetFrameTime();
+        camera.zoom += ((float)GetMouseWheelMove()*0.05f);
+        if (camera.zoom > 3.0f) 
+            camera.zoom = 3.0f;
+        else if (camera.zoom < 0.25f) 
+            camera.zoom = 0.25f;
         
+        BeginDrawing();
+
+        float deltaTime = GetFrameTime();
+        // Move camera with user
+        UpdateCameraCenter(&camera, position, deltaTime, GetScreenWidth(), GetScreenHeight());
+
         //TitleScreen();
+        background = LoadTexture("res/back.jpg"); 
         ClearBackground(GREEN);
+        BeginMode2D(camera);
+
         DrawObject();
-        drawPlayer(player, position, playerRotation);
-        uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, player);
+        drawPlayer(user, position, playerRotation);
+        uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, user);
         pr.manageRotation(  playerRotation, playerDirection );
 
         float distance = 0.0f;
@@ -41,7 +63,7 @@ void Game::Gameloop(){
         int currentTime = GetTime() - startTime;
         int timeLeft = 10 - currentTime;
         if (timeLeft <= 0){
-            UnloadTexture(player);
+            UnloadTexture(user);
             UnloadTexture(mushroom);
             ClearBackground(WHITE);
             DrawText("Game-Over ...", 269, 75, 42, RED);
@@ -60,6 +82,7 @@ void Game::Gameloop(){
 
             mushroom = LoadTexture("res/badguy.png");             
         }
+        EndMode2D();
         EndDrawing();
     }
 }
@@ -76,10 +99,10 @@ void Game::CreateWindow(){
     SetWindowIcon(icon);
 
     mushroom = LoadTexture("res/badguy.png");
-    player = LoadTexture("res/player.png");
+    user = LoadTexture("res/player.png");
     
     Gameloop();
-    UnloadTexture(player);
+    UnloadTexture(user);
     UnloadTexture(mushroom);
     CloseWindow();
 }
@@ -121,4 +144,9 @@ void Game::drawPlayer(Texture2D &Texture, Vector2 &position, uint16_t rotation){
 
 void Game::RunGame(){
     CreateWindow();
+}
+
+void Game::UpdateCameraCenter(Camera2D *camera, Vector2 position, float delta, int width, int height){
+    camera->offset = (Vector2){ width/2.0f, height/2.0f };
+    camera->target = position;
 }
