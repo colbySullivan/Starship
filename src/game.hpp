@@ -18,6 +18,7 @@ class Game{
         Image icon;
         float PosX;
         float PosY;
+        float rotategoomba;
         int Health;
 
         uint16_t playerRotation = 0;

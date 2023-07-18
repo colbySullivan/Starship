@@ -6,7 +6,7 @@
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 50.0f, WHITE);
-    DrawTextureEx(spacegoomba, {PosX, PosY}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
     // DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
@@ -71,6 +71,7 @@ void Game::Gameloop(){
             DrawText("Game-Over ...", 269, 75, 42, RED);
         }
         else{
+            rotategoomba+=0.1f;
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
@@ -92,7 +93,7 @@ void Game::Gameloop(){
 void Game::CreateWindow(){
     SetTraceLogLevel(LOG_NONE);
     
-    InitWindow(800, 600, "Starship");
+    InitWindow(1200, 800, "Starship");
     //ToggleFullscreen();
     //HideCursor();
     
