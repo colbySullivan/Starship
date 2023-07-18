@@ -1,16 +1,16 @@
 # Galaga
 
-[![Build](https://github.com/kaissouDev/Eat-the-Mushroom/actions/workflows/build.yml/badge.svg)](https://github.com/kaissouDev/Eat-the-Mushroom/actions/workflows/build.yml)
+[![Build](https://github.com/colbySullivan/Starship/actions/workflows/build.yml/badge.svg)](https://github.com/colbySullivan/Starship/actions/workflows/build.yml)
 
 ## <b>How To compile ?</b>
 
-- [Compile for windows](https://github.com/kaissouDev/Eat-the-Mushroom/blob/master/docs/compile-windows.md)
-- [Compile for linux](https://github.com/kaissouDev/Eat-the-Mushroom/blob/master/docs/compile-linux.md)
-- [Compile for macos](https://github.com/kaissouDev/Eat-the-Mushroom/blob/master/docs/compile-macos.md)
+- [Compile for windows](https://github.com/colbySullivan/Starship/blob/master/docs/compile-windows.md)
+- [Compile for linux](https://github.com/colbySullivan/Starship/blob/master/docs/compile-linux.md)
+- [Compile for macos](https://github.com/colbySullivan/Starship/blob/master/docs/compile-macos.md)
 
 ## <b>Licenses</b>
 
-- [View licences](https://github.com/kaissouDev/Eat-the-Mushroom/blob/master/docs/license.md)
+- [View licences](https://github.com/colbySullivan/Starship/blob/master/docs/license.md)
 
 
 ## <b>Credits</b>
