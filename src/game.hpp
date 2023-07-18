@@ -13,6 +13,7 @@ class Game{
 		Texture2D mushroom;
         Texture2D user;
         Texture2D background;
+        Vector2 midscreen;
         Camera2D camera;
         Image icon;
         int PosX;

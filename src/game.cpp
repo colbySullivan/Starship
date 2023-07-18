@@ -30,7 +30,8 @@ void Game::Gameloop(){
     // Initialize camera
     camera = { 0 };
     camera.target = position;
-    camera.offset = (Vector2){ GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
+    midscreen = {GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
+    camera.offset = midscreen;
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
     int cameraOption = 0; // Default center
