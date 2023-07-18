@@ -16,8 +16,8 @@ class Game{
         Vector2 midscreen;
         Camera2D camera;
         Image icon;
-        int PosX;
-        int PosY;
+        float PosX;
+        float PosY;
         int Health;
 
         uint16_t playerRotation = 0;
