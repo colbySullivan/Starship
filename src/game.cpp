@@ -5,7 +5,7 @@
 
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
-    DrawTexture(background, GetScreenWidth()/2, GetScreenHeight()/2, WHITE);
+    DrawTextureEx(background, {0,0}, 0.0f, 50.0f, WHITE);
     DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
@@ -33,25 +33,24 @@ void Game::Gameloop(){
     midscreen = {GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
     camera.offset = midscreen;
     camera.rotation = 0.0f;
-    camera.zoom = 1.0f;
+    camera.zoom = 0.75f;
     int cameraOption = 0; // Default center
 
     while(!WindowShouldClose()){
         camera.zoom += ((float)GetMouseWheelMove()*0.05f);
-        if (camera.zoom > 3.0f) 
-            camera.zoom = 3.0f;
+        if (camera.zoom > 5.0f) 
+            camera.zoom = 5.0f;
         else if (camera.zoom < 0.25f) 
             camera.zoom = 0.25f;
-        
-        BeginDrawing();
 
         float deltaTime = GetFrameTime();
         // Move camera with user
         UpdateCameraCenter(&camera, position);
 
+        BeginDrawing();
+
         //TitleScreen();
-        background = LoadTexture("res/back.jpg"); 
-        ClearBackground(GREEN);
+        ClearBackground(GetColor(0x052c46ff));
         BeginMode2D(camera);
 
         DrawObject();
@@ -66,12 +65,12 @@ void Game::Gameloop(){
         if (timeLeft <= 0){
             UnloadTexture(user);
             UnloadTexture(mushroom);
+            UnloadTexture(background);
             ClearBackground(WHITE);
             DrawText("Game-Over ...", 269, 75, 42, RED);
         }
         else{
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
-            UnloadTexture(background);
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
         if(distance < 50) {
@@ -102,10 +101,12 @@ void Game::CreateWindow(){
 
     mushroom = LoadTexture("res/badguy.png");
     user = LoadTexture("res/player.png");
-    
+    background = LoadTexture("res/background.png");
+        
     Gameloop();
     UnloadTexture(user);
     UnloadTexture(mushroom);
+    UnloadTexture(background);
     CloseWindow();
 }
 
