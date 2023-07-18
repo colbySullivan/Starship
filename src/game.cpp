@@ -30,7 +30,8 @@ void Game::Gameloop(){
     // Initialize camera
     camera = { 0 };
     camera.target = position;
-    camera.offset = (Vector2){ GetScreenWidth()/2.0f, GetScreenHeight()/2.0f };
+    midscreen = {GetScreenWidth()/2.0f, GetScreenHeight()/2.0f};
+    camera.offset = midscreen;
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
     int cameraOption = 0; // Default center
@@ -46,7 +47,7 @@ void Game::Gameloop(){
 
         float deltaTime = GetFrameTime();
         // Move camera with user
-        UpdateCameraCenter(&camera, position, deltaTime, GetScreenWidth(), GetScreenHeight());
+        UpdateCameraCenter(&camera, position);
 
         //TitleScreen();
         background = LoadTexture("res/back.jpg"); 
@@ -146,7 +147,7 @@ void Game::RunGame(){
     CreateWindow();
 }
 
-void Game::UpdateCameraCenter(Camera2D *camera, Vector2 position, float delta, int width, int height){
-    camera->offset = (Vector2){ width/2.0f, height/2.0f };
+void Game::UpdateCameraCenter(Camera2D *camera, Vector2 position){
+    camera->offset = midscreen;
     camera->target = position;
 }

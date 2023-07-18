@@ -8,11 +8,12 @@ class Game{
         void DrawObject();
         void drawPlayer ( Texture2D &Texture, Vector2 &position, uint16_t rotation );
         void RunGame();
-        void UpdateCameraCenter(Camera2D *camera, Vector2 position, float delta, int width, int height);
+        void UpdateCameraCenter(Camera2D *camera, Vector2 position);
     private:
 		Texture2D mushroom;
         Texture2D user;
         Texture2D background;
+        Vector2 midscreen;
         Camera2D camera;
         Image icon;
         int PosX;
