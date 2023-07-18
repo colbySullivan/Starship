@@ -15,6 +15,6 @@
 
 ## <b>Credits</b>
 - [@KaissouDev](https://github.com/kaissouDev)
-Forked over from Eat-the-Mushroom. Used for its prebuilt infrasture for CMake and ninja.
+Forked over from Eat-the-Mushroom. Used for its prebuilt infrastructure for CMake and ninja.
 
 <div align="center"><b>---- colbySullivan (c) 2023 ----</b></div>
