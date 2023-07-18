@@ -45,18 +45,26 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 	uint8_t rotationFlags = 0;
 	// managing player movement and save rotation flags.
 	if (IsKeyDown(KEY_RIGHT)){
+		if(position.x > 11000)
+			position.x = 10;
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
 		position.x += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_LEFT)){
+		if(position.x < 10)
+			position.x = 10000;
 		rotationFlags |= PlayerDirectionEnum::LEFT;
 		position.x -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_DOWN)){
+		if(position.y > 11000)
+			position.y = 10;
 		rotationFlags |= PlayerDirectionEnum::DOWN;
 		position.y += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_UP)){
+		if(position.y < 10)
+			position.y = 11000;
 		rotationFlags |= PlayerDirectionEnum::UP;
 		position.y -= playerSpeed * deltaTime;
 	}

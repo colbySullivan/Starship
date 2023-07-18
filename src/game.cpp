@@ -6,7 +6,8 @@
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 50.0f, WHITE);
-    DrawTexture(mushroom, PosX, PosY, WHITE);
+    DrawTextureEx(mushroom, {PosX, PosY}, 0.0f, 10.0f, WHITE);
+    // DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
 /*void Game::TitleScreen(){
@@ -20,11 +21,11 @@ void Game::DrawObject(){
 
 void Game::Gameloop(){
     PlayerRotation pr;
-    Vector2 position = {0, 500};
+    Vector2 position = {5000, 5000};
     float playerSpeed = 300.0f;
     Health = 0;
-    PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
-    PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
+    PosX = GetRandomValue(100, 10000 - mushroom.width);
+    PosY = GetRandomValue(100, 10000 - mushroom.height);
     int startTime = GetTime();
 
     // Initialize camera
@@ -61,7 +62,7 @@ void Game::Gameloop(){
         float distance = 0.0f;
         
         int currentTime = GetTime() - startTime;
-        int timeLeft = 10 - currentTime;
+        int timeLeft = 60 - currentTime;
         if (timeLeft <= 0){
             UnloadTexture(user);
             UnloadTexture(mushroom);
@@ -73,13 +74,13 @@ void Game::Gameloop(){
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
-        if(distance < 50) {
+        if(distance < 300) {
             Health++;
 
             UnloadTexture(mushroom);
 
-            PosX = GetRandomValue(0, GetScreenWidth() - mushroom.width);
-            PosY = GetRandomValue(0, GetScreenHeight() - mushroom.height);
+            PosX = GetRandomValue(100, 10000 - mushroom.height);
+            PosY = GetRandomValue(100, 10000 - mushroom.height);
 
             mushroom = LoadTexture("res/badguy.png");             
         }
