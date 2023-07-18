@@ -8,6 +8,6 @@ cd build
 cmake ..
 cmake --build . --config Release
 cd Release
-.\Galaga.exe
+.\Starship.exe
 cd .. 
 cd ..
