@@ -5,7 +5,7 @@
 
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
-    DrawTextureEx(background, {0,0}, 0.0f, 50.0f, WHITE);
+    DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
     DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
     // DrawTexture(mushroom, PosX, PosY, WHITE);
 }
