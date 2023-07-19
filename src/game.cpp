@@ -22,6 +22,7 @@ void Game::DrawObject(){
 void Game::Gameloop(){
     PlayerRotation pr;
     Vector2 position = {5000, 5000};
+    float acceleration = 0.0f;
     float playerSpeed = 300.0f;
     Health = 0;
     PosX = GetRandomValue(100, 10000 - spacegoomba.width);
@@ -57,7 +58,7 @@ void Game::Gameloop(){
         DrawObject();
         drawPlayer(user, position, playerRotation);
         uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, user);
-        pr.manageRotation(  playerRotation, playerDirection );
+        pr.manageRotation(playerRotation, playerDirection);
 
         float distance = 0.0f;
         

@@ -10,5 +10,5 @@ void Bullet::shoot(Vector2 &position){
 }
 
 void Bullet::speed(float &playerspeed){
-    playerspeed += 15;
+    playerspeed = 315;
 }

@@ -7,4 +7,6 @@ class PlayerRotation{
         uint8_t manageMovement(Vector2 &, float &, float &, Texture2D &);
     private:
         Bullet ship;
+        float accelerationUp;
+        float accelerationRight;
 };

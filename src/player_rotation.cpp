@@ -48,25 +48,33 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 		if(position.x > 22500)
 			position.x = 500;
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
-		position.x += playerSpeed * deltaTime;
+		if (accelerationRight < 1) 
+			accelerationRight += 0.04f;
+		//position.x += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_LEFT)){
 		if(position.x < 500)
 			position.x = 22500;
 		rotationFlags |= PlayerDirectionEnum::LEFT;
-		position.x -= playerSpeed * deltaTime;
+		if (accelerationRight > -1) // TODO Opposite direction
+			accelerationRight -= 0.04f;
+		//position.x -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_DOWN)){
 		if(position.y > 10500)
 			position.y = 500;
 		rotationFlags |= PlayerDirectionEnum::DOWN;
-		position.y += playerSpeed * deltaTime;
+		if (accelerationUp > -1) // TODO Opposite direction
+			accelerationUp -= 0.04f;
+		//position.y += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_UP)){
 		if(position.y < 500)
 			position.y = 10500;
 		rotationFlags |= PlayerDirectionEnum::UP;
-		position.y -= playerSpeed * deltaTime;
+		if (accelerationUp < 1) 
+			accelerationUp += 0.04f;
+		//position.y -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_SPACE)){
 		player = LoadTexture("res/speedplayer.png");
@@ -75,7 +83,16 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 	}
 	if (IsKeyUp(KEY_SPACE)){
 		playerSpeed = 300.0f; // reset speed after space
-		 player = LoadTexture("res/player.png");
+		player = LoadTexture("res/player.png");
+
+		if (accelerationRight > 0) accelerationRight -= 0.02f;
+		if (accelerationUp > 0) accelerationUp -= 0.02f;
+		
+		if (accelerationRight < 0) accelerationRight += 0.02f;
+		if (accelerationUp < -0) accelerationUp += 0.02f;
 	}
+	position.x += (5 * accelerationRight);
+    position.y -= (5 * accelerationUp);
+	
 	return rotationFlags;
 }
