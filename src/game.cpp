@@ -5,8 +5,8 @@
 
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
-    DrawTextureEx(background, {0,0}, 0.0f, 50.0f, WHITE);
-    DrawTextureEx(mushroom, {PosX, PosY}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
     // DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
@@ -24,8 +24,8 @@ void Game::Gameloop(){
     Vector2 position = {5000, 5000};
     float playerSpeed = 300.0f;
     Health = 0;
-    PosX = GetRandomValue(100, 10000 - mushroom.width);
-    PosY = GetRandomValue(100, 10000 - mushroom.height);
+    PosX = GetRandomValue(100, 10000 - spacegoomba.width);
+    PosY = GetRandomValue(100, 10000 - spacegoomba.height);
     int startTime = GetTime();
 
     // Initialize camera
@@ -65,24 +65,25 @@ void Game::Gameloop(){
         int timeLeft = 60 - currentTime;
         if (timeLeft <= 0){
             UnloadTexture(user);
-            UnloadTexture(mushroom);
+            UnloadTexture(spacegoomba);
             UnloadTexture(background);
             ClearBackground(WHITE);
             DrawText("Game-Over ...", 269, 75, 42, RED);
         }
         else{
+            rotategoomba+=0.1f;
             DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
         if(distance < 300) {
             Health++;
 
-            UnloadTexture(mushroom);
+            UnloadTexture(spacegoomba);
 
-            PosX = GetRandomValue(100, 10000 - mushroom.height);
-            PosY = GetRandomValue(100, 10000 - mushroom.height);
+            PosX = GetRandomValue(100, 10000 - spacegoomba.height);
+            PosY = GetRandomValue(100, 10000 - spacegoomba.height);
 
-            mushroom = LoadTexture("res/badguy.png");             
+            spacegoomba = LoadTexture("res/badguy.png");             
         }
         EndMode2D();
         EndDrawing();
@@ -92,7 +93,7 @@ void Game::Gameloop(){
 void Game::CreateWindow(){
     SetTraceLogLevel(LOG_NONE);
     
-    InitWindow(800, 600, "Starship");
+    InitWindow(1200, 800, "Starship");
     //ToggleFullscreen();
     //HideCursor();
     
@@ -100,13 +101,13 @@ void Game::CreateWindow(){
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
-    mushroom = LoadTexture("res/badguy.png");
+    spacegoomba = LoadTexture("res/badguy.png");
     user = LoadTexture("res/player.png");
     background = LoadTexture("res/background.png");
         
     Gameloop();
     UnloadTexture(user);
-    UnloadTexture(mushroom);
+    UnloadTexture(spacegoomba);
     UnloadTexture(background);
     CloseWindow();
 }
