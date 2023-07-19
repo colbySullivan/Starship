@@ -49,7 +49,7 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 			position.x = 500;
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
 		if (accelerationRight < 1) 
-			accelerationRight += 0.04f;
+			accelerationRight += 0.02f;
 		//position.x += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_LEFT)){
@@ -57,7 +57,7 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 			position.x = 22500;
 		rotationFlags |= PlayerDirectionEnum::LEFT;
 		if (accelerationRight > -1) // TODO Opposite direction
-			accelerationRight -= 0.04f;
+			accelerationRight -= 0.02f;
 		//position.x -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_DOWN)){
@@ -65,7 +65,7 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 			position.y = 500;
 		rotationFlags |= PlayerDirectionEnum::DOWN;
 		if (accelerationUp > -1) // TODO Opposite direction
-			accelerationUp -= 0.04f;
+			accelerationUp -= 0.02f;
 		//position.y += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_UP)){
@@ -73,7 +73,7 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 			position.y = 10500;
 		rotationFlags |= PlayerDirectionEnum::UP;
 		if (accelerationUp < 1) 
-			accelerationUp += 0.04f;
+			accelerationUp += 0.02f;
 		//position.y -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_SPACE)){
@@ -83,15 +83,16 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 	}
 	if (IsKeyUp(KEY_SPACE)){
 		playerSpeed = 300.0f; // reset speed after space
-		player = LoadTexture("res/player.png");
+		//player = LoadTexture("res/player.png"); // Not loading background
 
+		// TODO need to fix stopping acceleration
 		if (accelerationRight > 0) accelerationRight -= 0.02f;
 		if (accelerationUp > 0) accelerationUp -= 0.02f;
 		
-		if (accelerationRight < 0) accelerationRight += 0.02f;
-		if (accelerationUp < -0) accelerationUp += 0.02f;
+		if (accelerationRight < -1) accelerationRight += 0.02f;
+		 if (accelerationUp < -1) accelerationUp += 0.02f;
 	}
-	position.x += (5 * accelerationRight);
+	position.x += (5 * accelerationRight); // TODO playspeed
     position.y -= (5 * accelerationUp);
 	
 	return rotationFlags;
