@@ -41,7 +41,7 @@ void PlayerRotation::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	}
 }
 
-uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D player){
+uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player){
 	uint8_t rotationFlags = 0;
 	// managing player movement and save rotation flags.
 	if (IsKeyDown(KEY_RIGHT)){
@@ -69,11 +69,13 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 		position.y -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_SPACE)){
-		ship.shoot(position);
+		player = LoadTexture("res/speedplayer.png");
+		//ship.shoot(position);
 		ship.speed(playerSpeed);
 	}
 	if (IsKeyUp(KEY_SPACE)){
 		playerSpeed = 300.0f; // reset speed after space
+		 player = LoadTexture("res/player.png");
 	}
 	return rotationFlags;
 }
