@@ -3,8 +3,8 @@
 
 class Bullet{
     typedef struct Shoot {
-        Vector2 xy = (Vector2){0, 0};;
-        Vector2 zoom = (Vector2){0, 0};;
+        Vector2 xy = {0, 0};;
+        Vector2 zoom = {0, 0};;
         float radius = 5;
         int lifeSpawn = 0;
         bool active = false;
