@@ -13,6 +13,7 @@ class Game{
 		Texture2D spacegoomba;
         Texture2D user;
         Texture2D background;
+        Texture2D speedster;
         Vector2 midscreen;
         Camera2D camera;
         Image icon;

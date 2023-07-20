@@ -57,7 +57,7 @@ void Game::Gameloop(){
 
         DrawObject();
         drawPlayer(user, position, playerRotation);
-        uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user);
+        uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
         move.manageRotation(playerRotation, playerDirection);
 
         float distance = 0.0f;
@@ -105,6 +105,7 @@ void Game::CreateWindow(){
     spacegoomba = LoadTexture("res/badguy.png");
     user = LoadTexture("res/player.png");
     background = LoadTexture("res/background.png");
+    speedster = LoadTexture("res/speedplayer.png");
         
     Gameloop();
     UnloadTexture(user);

@@ -41,8 +41,9 @@ void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	}
 }
 
-uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player){
+uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster){
 	uint8_t rotationFlags = 0;
+	Texture2D TextureBuffer = player;
 	// Managing player movement and return rotation flags
 	if (IsKeyDown(KEY_RIGHT)){
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
@@ -51,12 +52,12 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	}
 	if (IsKeyDown(KEY_LEFT)){
 		rotationFlags |= PlayerDirectionEnum::LEFT;
-		if (accelerationRight > -1) // TODO Opposite direction
+		if (accelerationRight > -1)
 			accelerationRight -= 0.04f;
 	}
 	if (IsKeyDown(KEY_DOWN)){
 		rotationFlags |= PlayerDirectionEnum::DOWN;
-		if (accelerationUp > -1) // TODO Opposite direction
+		if (accelerationUp > -1)
 			accelerationUp -= 0.04f;
 	}
 	if (IsKeyDown(KEY_UP)){
@@ -66,15 +67,15 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	}
 	if (IsKeyDown(KEY_SPACE)){
 		//UnloadTexture(player);
-		//player = LoadTexture("res/speedplayer.png");
+		player = speedster;
 		//ship.shoot(position);
 		ship.speed(playerSpeed);
 	}
 	//if (IsKeyUp(KEY_SPACE)){
 	else{
-		playerSpeed = 2.0f; // reset speed after space
+		playerSpeed = 1.0f; // reset speed after space
 		//UnloadTexture(player);
-		//player = LoadTexture("res/player.png"); // Not loading background
+		player = TextureBuffer; // TODO texture bug causes static background
 
 		// Deceleration
 		if (accelerationRight > 0) accelerationRight -= 0.001f;
@@ -83,6 +84,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 		if (accelerationRight < 0) accelerationRight += 0.001f;
 		if (accelerationUp < 0) accelerationUp += 0.001f;
 	}
+	// Player movement
 	position.x += (playerSpeed * accelerationRight);
     position.y -= (playerSpeed * accelerationUp);
 	
