@@ -8,6 +8,17 @@
 - [Compile for linux](https://github.com/colbySullivan/Starship/blob/master/docs/compile-linux.md)
 - [Compile for macos](https://github.com/colbySullivan/Starship/blob/master/docs/compile-macos.md)
 
+## Plans
+ - ~~Timer~~
+ - ~~Velocity~~
+ - ~~Projectiles~~
+ - Enemy collision
+ - Points system
+
+## Demo
+![spacedemo](https://github.com/colbySullivan/Starship/assets/88957296/3f44f3cc-e280-456e-b087-8859de6f9142)
+
+
 ## <b>Licenses</b>
 
 - [View licences](https://github.com/colbySullivan/Starship/blob/master/docs/license.md)
