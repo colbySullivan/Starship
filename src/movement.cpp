@@ -1,6 +1,6 @@
 #include "game.hpp"
 #include "main.hpp"
-#include "player_rotation.hpp"
+#include "movement.hpp"
 
 enum PlayerDirectionEnum{
 	RIGHT = 0b00010000,
@@ -13,7 +13,7 @@ enum PlayerDirectionEnum{
 	DOWN_LEFT = DOWN | LEFT
 };
 
-void PlayerRotation::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
+void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	switch (rotationFlags) {
 		case PlayerDirectionEnum::RIGHT:
 		      rotation = 0;
@@ -41,48 +41,42 @@ void PlayerRotation::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	}
 }
 
-uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player){
+uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player){
 	uint8_t rotationFlags = 0;
 	// managing player movement and save rotation flags.
 	if (IsKeyDown(KEY_RIGHT)){
-		if(position.x > 22500)
-			position.x = 500;
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
 		if (accelerationRight < 1) 
 			accelerationRight += 0.02f;
 		//position.x += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_LEFT)){
-		if(position.x < 500)
-			position.x = 22500;
 		rotationFlags |= PlayerDirectionEnum::LEFT;
 		if (accelerationRight > -1) // TODO Opposite direction
 			accelerationRight -= 0.02f;
 		//position.x -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_DOWN)){
-		if(position.y > 10500)
-			position.y = 500;
 		rotationFlags |= PlayerDirectionEnum::DOWN;
 		if (accelerationUp > -1) // TODO Opposite direction
 			accelerationUp -= 0.02f;
 		//position.y += playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_UP)){
-		if(position.y < 500)
-			position.y = 10500;
 		rotationFlags |= PlayerDirectionEnum::UP;
 		if (accelerationUp < 1) 
 			accelerationUp += 0.02f;
 		//position.y -= playerSpeed * deltaTime;
 	}
 	if (IsKeyDown(KEY_SPACE)){
-		player = LoadTexture("res/speedplayer.png");
+		//UnloadTexture(player);
+		//player = LoadTexture("res/speedplayer.png");
 		//ship.shoot(position);
 		ship.speed(playerSpeed);
 	}
 	if (IsKeyUp(KEY_SPACE)){
-		playerSpeed = 300.0f; // reset speed after space
+		playerSpeed = 2.0f; // reset speed after space
+		//UnloadTexture(player);
 		//player = LoadTexture("res/player.png"); // Not loading background
 
 		// TODO need to fix stopping acceleration
@@ -92,8 +86,21 @@ uint8_t PlayerRotation::manageMovement(Vector2 &position, float &playerSpeed, fl
 		if (accelerationRight < -1) accelerationRight += 0.02f;
 		 if (accelerationUp < -1) accelerationUp += 0.02f;
 	}
-	position.x += (5 * accelerationRight); // TODO playspeed
-    position.y -= (5 * accelerationUp);
+	position.x += (playerSpeed * accelerationRight); // TODO playspeed
+    position.y -= (playerSpeed * accelerationUp);
 	
+	checkWallCollision(position);
+
 	return rotationFlags;
+}
+
+void Movement::checkWallCollision(Vector2 &position){
+	if(position.x > 22500) //Right
+			position.x = 500;
+	if(position.x < 500) //Left
+			position.x = 22500;
+	if(position.y > 10500) //Down
+			position.y = 500;
+	if(position.y < 500) //Up
+			position.y = 10500;
 }

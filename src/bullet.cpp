@@ -1,7 +1,7 @@
 #include "bullet.hpp"
 
 void Bullet::shoot(Vector2 &position){
-    trajectile = LoadTexture("res/badguy.png");
+    //trajectile = LoadTexture("res/badguy.png");
     float movX = position.x;
     float deltaTime = GetFrameTime();
     movX += 300.0f * deltaTime;
@@ -10,5 +10,5 @@ void Bullet::shoot(Vector2 &position){
 }
 
 void Bullet::speed(float &playerspeed){
-    playerspeed = 315;
+    playerspeed = 3.0f;
 }

@@ -1,6 +1,6 @@
 #include "game.hpp"
 #include "main.hpp"
-#include "player_rotation.hpp"
+#include "movement.hpp"
 #include <iostream>
 
 void Game::DrawObject(){
@@ -20,10 +20,10 @@ void Game::DrawObject(){
 }*/
 
 void Game::Gameloop(){
-    PlayerRotation pr;
+    Movement move;
     Vector2 position = {5000, 5000};
     float acceleration = 0.0f;
-    float playerSpeed = 300.0f;
+    float playerSpeed = 2.0f;
     Health = 0;
     PosX = GetRandomValue(100, 10000 - spacegoomba.width);
     PosY = GetRandomValue(100, 10000 - spacegoomba.height);
@@ -57,8 +57,8 @@ void Game::Gameloop(){
 
         DrawObject();
         drawPlayer(user, position, playerRotation);
-        uint8_t playerDirection = pr.manageMovement( position, playerSpeed, deltaTime, user);
-        pr.manageRotation(playerRotation, playerDirection);
+        uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user);
+        move.manageRotation(playerRotation, playerDirection);
 
         float distance = 0.0f;
         
