@@ -13,7 +13,7 @@ class Bullet{
     Shoot shoot[MAX_BULLETS]; // Sets up default values
 public:
     Texture2D trajectile;
-    void fire(Vector2 position);
+    void fire(Vector2, float, float);
     void speed(float &);
 private:
 };

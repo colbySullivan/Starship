@@ -1,14 +1,14 @@
 #include "bullet.hpp"
 
-void Bullet::fire(Vector2 position){
+void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight){
     // Player shoot logic
     if (IsKeyPressed(KEY_SPACE)){
         for (int i = 0; i < MAX_BULLETS; i++){
             if (!shoot[i].active){
                 this->shoot[i].xy = { position.x + 30 , position.y + 30}; 
                 this->shoot[i].active = true;
-                this->shoot[i].zoom.x = 1.5;
-                this->shoot[i].zoom.y = 1.5;
+                this->shoot[i].zoom.x = 2 * accelerationRight;
+                this->shoot[i].zoom.y = 2 * accelerationUp;//
                 break;
             }
         }
