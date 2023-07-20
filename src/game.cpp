@@ -7,7 +7,6 @@ void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
     DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
-    // DrawTexture(mushroom, PosX, PosY, WHITE);
 }
 
 /*void Game::TitleScreen(){
@@ -20,8 +19,9 @@ void Game::DrawObject(){
 }*/
 
 void Game::Gameloop(){
+    MAX_BADGUYS = 10;
     Movement move;
-    Vector2 position = {5000, 5000};
+    Vector2 position = {2500, 2500};
     float acceleration = 0.0f;
     float playerSpeed = 2.0f;
     Health = 0;

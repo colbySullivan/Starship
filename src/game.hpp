@@ -10,6 +10,7 @@ class Game{
         void RunGame();
         void UpdateCameraCenter(Camera2D *camera, Vector2 position);
     private:
+        int MAX_BADGUYS;
 		Texture2D spacegoomba;
         Texture2D user;
         Texture2D background;
