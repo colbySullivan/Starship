@@ -1,8 +1,8 @@
-# Galaga
+# Starship
 
 [![Build](https://github.com/colbySullivan/Starship/actions/workflows/build.yml/badge.svg)](https://github.com/colbySullivan/Starship/actions/workflows/build.yml)
 
-## <b>How To compile ?</b>
+## <b>How To compile </b>
 
 - [Compile for windows](https://github.com/colbySullivan/Starship/blob/master/docs/compile-windows.md)
 - [Compile for linux](https://github.com/colbySullivan/Starship/blob/master/docs/compile-linux.md)
