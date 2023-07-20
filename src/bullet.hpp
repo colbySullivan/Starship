@@ -16,4 +16,5 @@ public:
     void fire(Vector2, float, float);
     void speed(float &);
 private:
+    int bulletsShot = 0;
 };

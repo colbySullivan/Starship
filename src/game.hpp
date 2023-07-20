@@ -16,6 +16,7 @@ class Game{
         Texture2D background;
         Texture2D speedster;
         Vector2 midscreen;
+        Vector2 position;
         Camera2D camera;
         Image icon;
         float PosX;

@@ -66,11 +66,10 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 		if (accelerationUp < 1) 
 			accelerationUp += 0.04f;
 	}
-	// if (IsKeyDown(KEY_SPACE)){
-	// 	player = speedster;
-	// 	ship.fire(position);
-	// 	ship.speed(playerSpeed);
-	// }
+	if (IsKeyDown(KEY_E)){
+		player = speedster;
+		ship.speed(playerSpeed);
+	}
 	else{
 		playerSpeed = 1.0f; // reset speed after space
 		player = TextureBuffer; // TODO texture bug causes static background

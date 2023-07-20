@@ -4,7 +4,7 @@
 #include <iostream>
 
 void Game::DrawObject(){
-    DrawText(TextFormat("Health = %d", Health), 269, 28, 42, WHITE);
+    DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
     DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
 }
@@ -21,7 +21,8 @@ void Game::DrawObject(){
 void Game::Gameloop(){
     MAX_BADGUYS = 10;
     Movement move;
-    Vector2 position = {2500, 2500};
+    position = {2500, 2500};
+    playerRotation = 0;
     float acceleration = 0.0f;
     float playerSpeed = 2.0f;
     Health = 0;
@@ -73,7 +74,10 @@ void Game::Gameloop(){
         }
         else{
             rotategoomba+=0.1f;
-            DrawText(TextFormat("Timer : %02ds", timeLeft), 269, 75, 42, WHITE);
+            DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
+            DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);
+            DrawText("Press E to boost", position.x - 750, position.y - 450, 25, WHITE);
+
         }
         distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
         if(distance < 300) {
