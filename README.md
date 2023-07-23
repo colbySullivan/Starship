@@ -12,6 +12,7 @@
  - ~~Timer~~
  - ~~Velocity~~
  - ~~Projectiles~~
+ - Pause/Title screen
  - Enemy collision
  - Points system
 
