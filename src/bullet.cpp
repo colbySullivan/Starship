@@ -51,7 +51,7 @@ void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRigh
 
             //Despawn shot
             if (shoot[i].lifeSpawn >= 3000){ // Bullet timer
-                this->shoot[i].zoom = {0, 0};
+                this->shoot[i].xy = {0, 0};
                 this->shoot[i].zoom = {0, 0};
                 this->shoot[i].lifeSpawn = 0;
                 this->shoot[i].active = false;
