@@ -2,13 +2,13 @@
 
 void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight){
     // Player shoot logic
-    if (IsKeyPressed(KEY_Q)){
+    if (IsKeyPressed(KEY_Q)){ //TODO bullets from stopped state
         for (int i = 0; i < MAX_BULLETS; i++){
             if (!shoot[i].active){
                 this->shoot[i].xy = { position.x + 30 , position.y + 30}; 
                 this->shoot[i].active = true;
                 this->shoot[i].zoom.x = 2 * accelerationRight;
-                this->shoot[i].zoom.y = 2 * accelerationUp;//
+                this->shoot[i].zoom.y = 2 * accelerationUp;
                 bulletsShot++;
                 break;
             }

@@ -44,7 +44,7 @@ void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster){
 	uint8_t rotationFlags = 0;
 	Texture2D TextureBuffer = player;
-	ship.fire(position, accelerationUp, accelerationRight);
+
 	// Managing player movement and return rotation flags
 	if (IsKeyDown(KEY_RIGHT)){
 		rotationFlags |= PlayerDirectionEnum::RIGHT;
@@ -85,6 +85,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	position.x += (playerSpeed * accelerationRight);
     position.y -= (playerSpeed * accelerationUp);
 	
+	ship.fire(position, accelerationUp, accelerationRight);
 	checkWallCollision(position);
 
 	return rotationFlags;

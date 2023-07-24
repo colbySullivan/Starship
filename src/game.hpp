@@ -19,6 +19,7 @@ class Game{
         Vector2 position;
         Camera2D camera;
         bool gamestart = false;
+        int startTime;
         Image icon;
         float PosX;
         float PosY;

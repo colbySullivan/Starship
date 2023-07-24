@@ -14,6 +14,7 @@ void Game::TitleScreen(){
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
     if(IsKeyPressed(KEY_SPACE)){
         gamestart = true;
+        startTime = GetTime();
     }
 }
 
@@ -27,7 +28,6 @@ void Game::Gameloop(){
     Health = 0;
     PosX = GetRandomValue(100, 10000 - spacegoomba.width);
     PosY = GetRandomValue(100, 10000 - spacegoomba.height);
-    int startTime = GetTime();
 
     // Initialize camera
     camera = { 0 };
