@@ -18,6 +18,7 @@ class Game{
         Vector2 midscreen;
         Vector2 position;
         Camera2D camera;
+        bool gamestart = false;
         Image icon;
         float PosX;
         float PosY;
