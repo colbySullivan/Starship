@@ -1,6 +1,6 @@
 #include "main.hpp"
 #include "enemy.hpp"
-#define MAX_BULLETS 10
+#define MAX_BULLETS 20
 
 class Bullet{
     typedef struct Shoot {

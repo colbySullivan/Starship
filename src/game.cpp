@@ -32,6 +32,7 @@ void Game::TitleScreen(Vector2 &startXY){
 void Game::Gameloop(){
     MAX_BADGUYS = 10;
     Movement move;
+    // Enemy evil; // TODO reset goombas
     position = {2500, 2500};
     playerRotation = 0;
     float acceleration = 0.0f;
@@ -48,7 +49,13 @@ void Game::Gameloop(){
     camera.rotation = 0.0f;
     camera.zoom = 0.75f;
     int cameraOption = 0; // Default center
+
+    // Initialize Goombas
+    //evil.initGoombas(); // TODO reset goombas
+
     Vector2 startXY = {0,0};
+
+
 
     while(!WindowShouldClose()){
         camera.zoom += ((float)GetMouseWheelMove()*0.05f);
@@ -63,8 +70,11 @@ void Game::Gameloop(){
 
         BeginDrawing();
 
-        if(!gamestart)
+        if(!gamestart){
             TitleScreen(startXY);
+            // evil.initGoombas(); // TODO reset goombas
+        }
+            
         else if(IsKeyPressed(KEY_P)){
             gamestart = false;
         }
