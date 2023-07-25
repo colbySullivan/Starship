@@ -65,6 +65,9 @@ void Game::Gameloop(){
 
         if(!gamestart)
             TitleScreen(startXY);
+        else if(IsKeyPressed(KEY_P)){
+            gamestart = false;
+        }
         else{
             ClearBackground(GetColor(0x052c46ff));
             BeginMode2D(camera);
