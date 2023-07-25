@@ -1,6 +1,6 @@
 #include "enemy.hpp"
 
-void Enemy::goombaCollision(Vector2 bulletPos){
+int Enemy::goombaCollision(Vector2 bulletPos){
     this->initGoombas();
     for (int i = 0; i < MAX_ENEMIES; i++){
         if (Enemy[i].active){
@@ -10,9 +10,11 @@ void Enemy::goombaCollision(Vector2 bulletPos){
                 Enemy[i].active = false;
                 Enemy[i].randX = 0;
                 Enemy[i].randY = 0;
+                goombasDown++;
             }
         }
     }
+    return goombasDown;
 }
 
 void Enemy::initGoombas(){

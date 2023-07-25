@@ -62,9 +62,10 @@ void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRigh
     for (int i = 0; i < MAX_BULLETS; i++){
         if (shoot[i].active)
             DrawCircleV(shoot[i].xy, 5, shoot[i].color);
-        goomba.goombaCollision(shoot[i].xy); // Enemy creation logic
+        goombasDown = goomba.goombaCollision(shoot[i].xy); // Enemy creation logic
     }
     DrawText(TextFormat("Bullets reloaded : %2d", MAX_BULLETS - bulletsShot), position.x - 100, position.y - 450, 42, WHITE);
+    DrawText(TextFormat("Gombas left : %2d", MAX_ENEMIES - goombasDown), position.x - 100, position.y - 400, 42, WHITE);
 }
 
 void Bullet::speed(float &playerspeed){

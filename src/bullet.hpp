@@ -16,6 +16,7 @@ public:
     Texture2D trajectile;
     void fire(Vector2, float, float);
     void speed(float &);
+    int goombasDown = 0;
 private:
     Enemy goomba;
     int bulletsShot = 0;

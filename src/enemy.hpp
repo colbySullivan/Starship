@@ -10,9 +10,10 @@ class Enemy{
     } Goomba;
     Goomba Enemy[MAX_ENEMIES]; // Sets up default values
     public:
-        void goombaCollision(Vector2);
+        int goombaCollision(Vector2);
         void initGoombas();
     private:
         Texture2D spacegoomba = LoadTexture("res/badguy.png");
         int distance;
+        int goombasDown = 0;
 };
