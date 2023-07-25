@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include "enemy.hpp"
 #define MAX_BULLETS 10
 
 class Bullet{
@@ -16,5 +17,6 @@ public:
     void fire(Vector2, float, float);
     void speed(float &);
 private:
+    Enemy goomba;
     int bulletsShot = 0;
 };

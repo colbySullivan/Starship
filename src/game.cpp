@@ -102,7 +102,7 @@ void Game::CreateWindow(){
     
     InitWindow(1200, 800, "Starship");
     //ToggleFullscreen();
-    //HideCursor();
+    HideCursor();
 
     // set the window icon
     icon = LoadImage("res/icon.png");

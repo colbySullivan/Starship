@@ -1,5 +1,5 @@
 #include "main.hpp"
-#define MAX_ENEMIES 10
+#define MAX_ENEMIES 40
 
 class Enemy{
     typedef struct Goomba {

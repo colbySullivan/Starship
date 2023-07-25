@@ -1,6 +1,5 @@
 #include "main.hpp"
 #include "bullet.hpp"
-#include "enemy.hpp"
 
 class Movement{
     public:
@@ -9,7 +8,6 @@ class Movement{
         void checkWallCollision(Vector2 &);
     private:
         Bullet ship;
-        Enemy goomba;
         float accelerationUp;
         float accelerationRight;
 };
