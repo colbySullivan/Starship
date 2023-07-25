@@ -12,9 +12,12 @@
  - ~~Timer~~
  - ~~Velocity~~
  - ~~Projectiles~~
- - Pause/~~Title~~ screen
- - Enemy collision
- - Points system
+ - ~~Pause/Title screen~~
+ - ~~Enemy collision~~
+ - ~~Points system~~
+  ### Ongoing
+ - Levels
+ - Issues
 
 ## Demo
 ![spacedemo](https://github.com/colbySullivan/Starship/assets/88957296/3f44f3cc-e280-456e-b087-8859de6f9142)
