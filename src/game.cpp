@@ -59,22 +59,22 @@ void Game::Gameloop(){
 
             DrawObject();
             drawPlayer(user, position, playerRotation);
-            uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
-            move.manageRotation(playerRotation, playerDirection);
 
             float distance = 0.0f;
             
             int currentTime = GetTime() - startTime;
-            int timeLeft = 60 - currentTime;
+            int timeLeft = 10 - currentTime;
             if (timeLeft <= 0){
-                UnloadTexture(user);
-                UnloadTexture(spacegoomba);
-                UnloadTexture(background);
-                ClearBackground(WHITE);
-                DrawText("Game-Over ...", 269, 75, 42, RED);
+                // UnloadTexture(user);
+                // UnloadTexture(spacegoomba);
+                // UnloadTexture(background);
+                ClearBackground(BROWN);
+                DrawText("Game-Over ...", position.x - 100, position.y - 500, 42, RED);
             }
             else{
                 rotategoomba+=0.1f;
+                uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
+                move.manageRotation(playerRotation, playerDirection);
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
                 DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);
                 DrawText("Press E to boost", position.x - 750, position.y - 450, 25, WHITE);
