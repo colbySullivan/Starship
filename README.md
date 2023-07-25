@@ -20,7 +20,8 @@
  - Issues
 
 ## Demo
-![spacedemo](https://github.com/colbySullivan/Starship/assets/88957296/3f44f3cc-e280-456e-b087-8859de6f9142)
+![newDemo](https://github.com/colbySullivan/Starship/assets/88957296/cd76f29f-8619-4827-8f18-30512fc72ccb)
+
 
 
 ## <b>Licenses</b>
