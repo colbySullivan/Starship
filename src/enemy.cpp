@@ -1,6 +1,7 @@
 #include "enemy.hpp"
 
 void Enemy::goombaCollision(Vector2 bulletPos){
+    this->initGoombas();
     for (int i = 0; i < MAX_ENEMIES; i++){
         if (Enemy[i].active){
             DrawTextureEx(Enemy[i].texture, {Enemy[i].randX, Enemy[i].randY}, 0.0f, 5.0f, WHITE); 
@@ -11,5 +12,11 @@ void Enemy::goombaCollision(Vector2 bulletPos){
                 Enemy[i].randY = 0;
             }
         }
+    }
+}
+
+void Enemy::initGoombas(){
+    for (int i = 0; i < MAX_ENEMIES; i++){ 
+        Enemy[i].texture = spacegoomba;
     }
 }

@@ -5,13 +5,14 @@ class Enemy{
     typedef struct Goomba {
         float randX = GetRandomValue(100, 10000);
         float randY = GetRandomValue(100, 10000);
-        Texture2D texture = LoadTexture("res/badguy.png");
+        Texture2D texture;
         bool active = true;
     } Goomba;
     Goomba Enemy[MAX_ENEMIES]; // Sets up default values
     public:
         void goombaCollision(Vector2);
-        //Texture2D spacegoomba = LoadTexture("res/badguy.png");
+        void initGoombas();
     private:
+        Texture2D spacegoomba = LoadTexture("res/badguy.png");
         int distance;
 };
