@@ -30,7 +30,7 @@ void Game::TitleScreen(Vector2 &startXY){
 }
 
 void Game::Gameloop(){
-    MAX_BADGUYS = 10;
+    GAME_TIME = 20; 
     Movement move;
     // Enemy evil; // TODO reset goombas
     position = {2500, 2500};
@@ -88,7 +88,7 @@ void Game::Gameloop(){
             float distance = 0.0f;
             
             int currentTime = GetTime() - startTime;
-            int timeLeft = 10 - currentTime;
+            int timeLeft = GAME_TIME - currentTime;
             if (timeLeft <= 0){
                 // UnloadTexture(user);
                 // UnloadTexture(spacegoomba);

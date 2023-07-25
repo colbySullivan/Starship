@@ -11,7 +11,7 @@ class Game{
         void UpdateCameraCenter(Camera2D *, Vector2);
         void EndScreen();
     private:
-        int MAX_BADGUYS;
+        int GAME_TIME;
 		Texture2D spacegoomba;
         Texture2D user;
         Texture2D background;
