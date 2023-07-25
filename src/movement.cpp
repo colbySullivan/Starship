@@ -85,7 +85,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	position.x += (playerSpeed * accelerationRight);
     position.y -= (playerSpeed * accelerationUp);
 	
-	ship.fire(position, accelerationUp, accelerationRight);
+	ship.fire(position, accelerationUp, accelerationRight); // Shooting logical call
 	checkWallCollision(position);
 
 	return rotationFlags;

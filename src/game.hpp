@@ -4,13 +4,14 @@ class Game{
     public:
         void CreateWindow();
         void Gameloop();
-        void TitleScreen();
+        void TitleScreen(Vector2 &);
         void DrawObject();
         void drawPlayer (Texture2D &, Vector2 &, uint16_t);
         void RunGame();
         void UpdateCameraCenter(Camera2D *, Vector2);
+        void EndScreen();
     private:
-        int MAX_BADGUYS;
+        int GAME_TIME;
 		Texture2D spacegoomba;
         Texture2D user;
         Texture2D background;

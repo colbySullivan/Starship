@@ -6,12 +6,23 @@
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
-    DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
 }
 
-void Game::TitleScreen(){
+void Game::EndScreen(){
+    DrawText("Game-Over ...", position.x - 100, position.y - 500, 42, RED);
+    DrawText("Press Space To Play Again", position.x - 500, position.y + 200, 64, RED);
+    if(IsKeyPressed(KEY_SPACE)){
+        startTime = GetTime();
+    }
+}
+
+void Game::TitleScreen(Vector2 &startXY){
     ClearBackground(GetColor(0x052c46ff));
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
+    startXY.x += 0.1;
+    if(startXY.x > 900)
+        startXY.x = 0;
+    DrawTextureEx(speedster, startXY, 0.1f, 5.0f, WHITE);
     if(IsKeyPressed(KEY_SPACE)){
         gamestart = true;
         startTime = GetTime();
@@ -19,15 +30,16 @@ void Game::TitleScreen(){
 }
 
 void Game::Gameloop(){
-    MAX_BADGUYS = 10;
+    GAME_TIME = 20; 
     Movement move;
+    // Enemy evil; // TODO reset goombas
     position = {2500, 2500};
     playerRotation = 0;
     float acceleration = 0.0f;
     float playerSpeed = 2.0f;
     Health = 0;
-    PosX = GetRandomValue(100, 10000 - spacegoomba.width);
-    PosY = GetRandomValue(100, 10000 - spacegoomba.height);
+    PosX = GetRandomValue(500, 22500 - spacegoomba.width);
+    PosY = GetRandomValue(400, 10500 - spacegoomba.height);
 
     // Initialize camera
     camera = { 0 };
@@ -37,6 +49,13 @@ void Game::Gameloop(){
     camera.rotation = 0.0f;
     camera.zoom = 0.75f;
     int cameraOption = 0; // Default center
+
+    // Initialize Goombas
+    //evil.initGoombas(); // TODO reset goombas
+
+    Vector2 startXY = {0,0};
+
+
 
     while(!WindowShouldClose()){
         camera.zoom += ((float)GetMouseWheelMove()*0.05f);
@@ -51,30 +70,35 @@ void Game::Gameloop(){
 
         BeginDrawing();
 
-        if(!gamestart)
-            TitleScreen();
+        if(!gamestart){
+            TitleScreen(startXY);
+            // evil.initGoombas(); // TODO reset goombas
+        }
+            
+        else if(IsKeyPressed(KEY_P)){
+            gamestart = false;
+        }
         else{
             ClearBackground(GetColor(0x052c46ff));
             BeginMode2D(camera);
 
             DrawObject();
             drawPlayer(user, position, playerRotation);
-            uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
-            move.manageRotation(playerRotation, playerDirection);
 
             float distance = 0.0f;
             
             int currentTime = GetTime() - startTime;
-            int timeLeft = 60 - currentTime;
+            int timeLeft = GAME_TIME - currentTime;
             if (timeLeft <= 0){
-                UnloadTexture(user);
-                UnloadTexture(spacegoomba);
-                UnloadTexture(background);
-                ClearBackground(WHITE);
-                DrawText("Game-Over ...", 269, 75, 42, RED);
+                // UnloadTexture(user);
+                // UnloadTexture(spacegoomba);
+                // UnloadTexture(background); 
+                // TODO when used there is a texture bug
+                EndScreen();
             }
             else{
-                rotategoomba+=0.1f;
+                uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
+                move.manageRotation(playerRotation, playerDirection);
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
                 DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);
                 DrawText("Press E to boost", position.x - 750, position.y - 450, 25, WHITE);
@@ -102,7 +126,7 @@ void Game::CreateWindow(){
     
     InitWindow(1200, 800, "Starship");
     //ToggleFullscreen();
-    //HideCursor();
+    HideCursor();
 
     // set the window icon
     icon = LoadImage("res/icon.png");

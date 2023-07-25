@@ -1,5 +1,6 @@
 #include "main.hpp"
-#define MAX_BULLETS 10
+#include "enemy.hpp"
+#define MAX_BULLETS 20
 
 class Bullet{
     typedef struct Shoot {
@@ -15,6 +16,8 @@ public:
     Texture2D trajectile;
     void fire(Vector2, float, float);
     void speed(float &);
+    int goombasDown = 0;
 private:
+    Enemy goomba;
     int bulletsShot = 0;
 };
