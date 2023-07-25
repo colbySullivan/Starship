@@ -86,6 +86,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
     position.y -= (playerSpeed * accelerationUp);
 	
 	ship.fire(position, accelerationUp, accelerationRight);
+	goomba.goombaCollision();
 	checkWallCollision(position);
 
 	return rotationFlags;
