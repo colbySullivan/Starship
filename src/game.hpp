@@ -4,7 +4,7 @@ class Game{
     public:
         void CreateWindow();
         void Gameloop();
-        void TitleScreen();
+        void TitleScreen(Vector2 &);
         void DrawObject();
         void drawPlayer (Texture2D &, Vector2 &, uint16_t);
         void RunGame();

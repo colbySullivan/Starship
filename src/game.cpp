@@ -6,7 +6,6 @@
 void Game::DrawObject(){
     DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
     DrawTextureEx(background, {0,0}, 0.0f, 10.0f, WHITE);
-    DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
 }
 
 void Game::EndScreen(){
@@ -17,9 +16,13 @@ void Game::EndScreen(){
     }
 }
 
-void Game::TitleScreen(){
+void Game::TitleScreen(Vector2 &startXY){
     ClearBackground(GetColor(0x052c46ff));
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
+    startXY.x += 0.1;
+    if(startXY.x > 900)
+        startXY.x = 0;
+    DrawTextureEx(speedster, startXY, 0.1f, 5.0f, WHITE);
     if(IsKeyPressed(KEY_SPACE)){
         gamestart = true;
         startTime = GetTime();
@@ -45,6 +48,7 @@ void Game::Gameloop(){
     camera.rotation = 0.0f;
     camera.zoom = 0.75f;
     int cameraOption = 0; // Default center
+    Vector2 startXY = {0,0};
 
     while(!WindowShouldClose()){
         camera.zoom += ((float)GetMouseWheelMove()*0.05f);
@@ -60,7 +64,7 @@ void Game::Gameloop(){
         BeginDrawing();
 
         if(!gamestart)
-            TitleScreen();
+            TitleScreen(startXY);
         else{
             ClearBackground(GetColor(0x052c46ff));
             BeginMode2D(camera);
@@ -75,12 +79,11 @@ void Game::Gameloop(){
             if (timeLeft <= 0){
                 // UnloadTexture(user);
                 // UnloadTexture(spacegoomba);
-                // UnloadTexture(background);
-                //gamestart = false;
+                // UnloadTexture(background); 
+                // TODO when used there is a texture bug
                 EndScreen();
             }
             else{
-                rotategoomba+=0.1f;
                 uint8_t playerDirection = move.manageMovement( position, playerSpeed, deltaTime, user, speedster);
                 move.manageRotation(playerRotation, playerDirection);
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
