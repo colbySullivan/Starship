@@ -26,8 +26,8 @@ void Game::Gameloop(){
     float acceleration = 0.0f;
     float playerSpeed = 2.0f;
     Health = 0;
-    PosX = GetRandomValue(100, 10000 - spacegoomba.width);
-    PosY = GetRandomValue(100, 10000 - spacegoomba.height);
+    PosX = GetRandomValue(500, 22500 - spacegoomba.width);
+    PosY = GetRandomValue(400, 10500 - spacegoomba.height);
 
     // Initialize camera
     camera = { 0 };
