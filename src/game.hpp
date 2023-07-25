@@ -9,6 +9,7 @@ class Game{
         void drawPlayer (Texture2D &, Vector2 &, uint16_t);
         void RunGame();
         void UpdateCameraCenter(Camera2D *, Vector2);
+        void EndScreen();
     private:
         int MAX_BADGUYS;
 		Texture2D spacegoomba;

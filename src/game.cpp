@@ -9,6 +9,14 @@ void Game::DrawObject(){
     DrawTextureEx(spacegoomba, {PosX, PosY}, rotategoomba, 10.0f, WHITE);
 }
 
+void Game::EndScreen(){
+    DrawText("Game-Over ...", position.x - 100, position.y - 500, 42, RED);
+    DrawText("Press Space To Play Again", position.x - 500, position.y + 200, 64, RED);
+    if(IsKeyPressed(KEY_SPACE)){
+        startTime = GetTime();
+    }
+}
+
 void Game::TitleScreen(){
     ClearBackground(GetColor(0x052c46ff));
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
@@ -68,8 +76,8 @@ void Game::Gameloop(){
                 // UnloadTexture(user);
                 // UnloadTexture(spacegoomba);
                 // UnloadTexture(background);
-                ClearBackground(BROWN);
-                DrawText("Game-Over ...", position.x - 100, position.y - 500, 42, RED);
+                //gamestart = false;
+                EndScreen();
             }
             else{
                 rotategoomba+=0.1f;
