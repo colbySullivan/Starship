@@ -3,29 +3,30 @@
 #include "movement.hpp"
 #include <iostream>
 
-// Function: DrawObject
-// Description: Draws the game objects on the screen, such as the health and background.
+/*
+  Description: Draws the game objects on the screen, such as the health and background.
+ */
 void Game::DrawObject() {
     DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
     DrawTextureEx(background, {0, 0}, 0.0f, 10.0f, WHITE);
 }
-
-// Function: EndScreen
-// Description: Draws the end game screen when the game is over.
-//   Allows the player to restart the game by pressing the spacebar.
+/*
+  Description: Draws the end game screen when the game is over.
+  Allows the player to unpause the game by pressing the spacebar.
+ */
 void Game::EndScreen() {
     DrawText("Game-Over ...", position.x - 100, position.y - 500, 42, RED);
     DrawText("Press Space To Play Again", position.x - 500, position.y + 200, 64, RED);
     if (IsKeyPressed(KEY_SPACE)) {
-        startTime = GetTime(); // Restart the game by resetting the start time.
+        startTime = GetTime(); // Unpause game time counter
     }
 }
-
-// Function: TitleScreen
-// Description: Draws the title screen with the game's initial instructions.
-//   Allows the player to start the game by pressing the spacebar.
-// Parameters:
-//   - startXY: Reference to a Vector2 variable representing the start position of a texture to animate.
+/*
+Description: Draws the title screen with the game's initial instructions.
+             Allows the player to start the game by pressing the spacebar.
+Parameters:
+  - startXY: Reference to a Vector2 variable representing the start position of a texture to animate.
+ */
 void Game::TitleScreen(Vector2& startXY) {
     ClearBackground(GetColor(0x052c46ff));
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
@@ -41,9 +42,10 @@ void Game::TitleScreen(Vector2& startXY) {
         startTime = GetTime(); // Start the game by setting the start time.
     }
 }
-
-// Function: Gameloop
-// Description: Main game loop that handles gameplay and game states.
+/*
+  Description: Main game loop that handles gameplay and game states.
+  TODO more documentation
+ */
 void Game::Gameloop() {
     // Game settings
     GAME_TIME = 20;
@@ -125,9 +127,9 @@ void Game::Gameloop() {
         EndDrawing();
     }
 }
-
-// Function: CreateWindow
-// Description: Initializes the game window and resources, runs the main game loop, and unloads resources.
+/*
+  Description: Initializes the game window and resources, runs the main game loop, and unloads resources.
+ */
 void Game::CreateWindow() {
     SetTraceLogLevel(LOG_NONE);
     InitWindow(1200, 800, "Starship");
@@ -152,12 +154,13 @@ void Game::CreateWindow() {
     CloseWindow();
 }
 
-// Function: drawPlayer
-// Description: Draws the player texture with the specified rotation at the given position.
-// Parameters:
-//   - Texture: Reference to the player texture.
-//   - position: Reference to the player position Vector2.
-//   - rotation: Rotation angle of the player texture.
+/*
+  Description: Draws the player texture with the specified rotation at the given position.
+  Parameters:
+  - Texture: Reference to the player texture.
+  - position: Reference to the player position Vector2.
+  - rotation: Rotation angle of the player texture.
+  */
 void Game::drawPlayer(Texture2D& Texture, Vector2& position, uint16_t rotation) {
     Vector2 newPosition = position;
     switch (rotation) {
@@ -192,18 +195,18 @@ void Game::drawPlayer(Texture2D& Texture, Vector2& position, uint16_t rotation) 
     }
     DrawTextureEx(Texture, newPosition, rotation, 1.0f, WHITE);
 }
-
-// Function: RunGame
-// Description: Entry point for running the game.
+/*
+  Description: Entry point for running the game.
+ */
 void Game::RunGame() {
     CreateWindow();
 }
-
-// Function: UpdateCameraCenter
-// Description: Updates the camera center to follow the player.
-// Parameters:
-//   - camera: Pointer to the Camera2D struct representing the camera.
-//   - position: The position of the player to be followed by the camera.
+/*
+  Description: Updates the camera center to follow the player.
+  Parameters:
+  - camera: Pointer to the Camera2D struct representing the camera.
+  - position: The position of the player to be followed by the camera.
+  */
 void Game::UpdateCameraCenter(Camera2D* camera, Vector2 position) {
     camera->offset = midscreen;
     camera->target = position;
