@@ -1,11 +1,12 @@
 #include "enemy.hpp"
 
-// Function: goombaCollision
-// Description: Checks for collision between bullets and goombas and updates their status accordingly.
-// Parameters:
-//   - bulletPos: The position of the bullet to check for collisions.
-// Return:
-//   - The number of defeated goombas.
+/*
+  Description: Checks for collision between bullets and goombas and updates their status accordingly.
+  Parameters:
+  - bulletPos: The position of the bullet to check for collisions.
+Return:
+  - The number of defeated goombas.
+ */
 int Enemy::goombaCollision(Vector2 bulletPos) {
     // Initialize goombas if not already done.
     this->initGoombas();
@@ -31,8 +32,9 @@ int Enemy::goombaCollision(Vector2 bulletPos) {
     return goombasDown; // Return the total number of defeated goombas.
 }
 
-// Function: initGoombas
-// Description: Initializes the goombas and their textures.
+/*
+  Description: Initializes the goombas and their textures.
+ */
 void Enemy::initGoombas() {
     for (int i = 0; i < MAX_ENEMIES; i++) { 
         Enemy[i].texture = spacegoomba; // Assign the texture to each goomba.
