@@ -1,6 +1,8 @@
 #include "game.hpp"
 #include "main.hpp"
 #include "movement.hpp"
+#include "player.h"
+#include "badguy.h"
 #include <iostream>
 
 /*
@@ -140,8 +142,18 @@ void Game::CreateWindow() {
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
+    // load background
+	Image player = { 0 };
+	player.format = PLAYER_FORMAT;
+	player.height = PLAYER_HEIGHT;
+	player.width = PLAYER_WIDTH;
+	player.data = PLAYER_DATA;
+	player.mipmaps = 1;
+
+	user = LoadTextureFromImage(player);
+
     spacegoomba = LoadTexture("res/badguy.png");
-    user = LoadTexture("res/player.png");
+    //user = LoadTexture("res/player.png");
     background = LoadTexture("res/background.png");
     speedster = LoadTexture("res/speedplayer.png");
 

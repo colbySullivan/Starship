@@ -31,6 +31,7 @@ add_executable(${PROJECT_NAME}
     src/movement.cpp
     src/bullet.cpp
     src/enemy.cpp
+    src/embedRes.cpp
 )
 
 # Link the 3rdparty library to the executable target
