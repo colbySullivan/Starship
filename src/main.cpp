@@ -5,8 +5,8 @@
 
 int main(int argc, char ** argv){
 	
-	Game game;
+	Game game; // New game instance
 
-	game.RunGame();
+	game.RunGame(); // Game loop
     return 0;
 }

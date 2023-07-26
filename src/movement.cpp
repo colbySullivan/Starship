@@ -13,6 +13,12 @@ enum PlayerDirectionEnum{
 	DOWN_LEFT = DOWN | LEFT
 };
 
+/*
+  Description: Converts the player's movement flags into the corresponding rotation angle.
+  Parameters:
+  - rotation: Reference to the rotation angle of the player.
+  - rotationFlags: Flags representing the player's movement direction.
+ */
 void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	switch (rotationFlags) {
 		case PlayerDirectionEnum::RIGHT:
@@ -41,6 +47,16 @@ void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
 	}
 }
 
+/*
+  Description: Manages the player's movement based on input and returns rotation flags.
+  Parameters:
+  - position: Reference to the position of the player.
+  - playerSpeed: Reference to the speed of the player.
+  - deltaTime: The time elapsed since the last frame.
+  - player: Reference to the player's texture.
+  - speedster: Texture for the player's speedster.
+  Returns: The rotation flags representing the player's movement direction.
+ */
 uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster){
 	uint8_t rotationFlags = 0;
 	Texture2D TextureBuffer = LoadTexture("res/player.png");
@@ -91,6 +107,11 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	return rotationFlags;
 }
 
+/*
+  Description: Checks if the player has collided with the game boundaries (walls) and updates the position accordingly.
+  Parameters:
+  - position: Reference to the position of the player.
+ */
 void Movement::checkWallCollision(Vector2 &position){
 	if(position.x > 22500) //Right
 			position.x = 500;
