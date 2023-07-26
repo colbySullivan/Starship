@@ -17,7 +17,7 @@ private:
     int GAME_TIME;           // The total game time in seconds.
     Texture2D spacegoomba;   // Texture for the enemy (goomba).
     Texture2D user;          // Texture for the player.
-    Texture2D background;    // Texture for the game background.
+    Texture2D back;    // Texture for the game background.
     Texture2D speedster;     // Texture for the player's speedster.
     Vector2 midscreen;       // The position of the center of the screen.
     Vector2 position;        // The current position of the player.

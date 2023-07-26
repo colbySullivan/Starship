@@ -3,6 +3,7 @@
 #include "movement.hpp"
 #include "player.h"
 #include "badguy.h"
+#include "background.h"
 #include <iostream>
 
 /*
@@ -10,7 +11,7 @@
  */
 void Game::DrawObject() {
     DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
-    DrawTextureEx(background, {0, 0}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(back, {0, 0}, 0.0f, 10.0f, WHITE);
 }
 /*
   Description: Draws the end game screen when the game is over.
@@ -151,7 +152,15 @@ void Game::CreateWindow() {
 	player.mipmaps = 1;
 	user = LoadTextureFromImage(player);
 
-    
+    Image background = { 0 };
+	background.format = BACKGROUND_FORMAT;
+	background.height = BACKGROUND_HEIGHT;
+	background.width = BACKGROUND_WIDTH;
+	background.data = BACKGROUND_DATA;
+	background.mipmaps = 1;
+	back = LoadTexture("res/background.png");
+
+
     //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
     //background = LoadTexture("res/background.png");
@@ -162,7 +171,7 @@ void Game::CreateWindow() {
     // Unload resources
     UnloadTexture(user);
     UnloadTexture(spacegoomba);
-    UnloadTexture(background);
+    UnloadTexture(back);
     CloseWindow();
 }
 
