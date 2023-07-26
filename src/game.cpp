@@ -142,20 +142,20 @@ void Game::CreateWindow() {
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
-    // load background
+    // load player
 	Image player = { 0 };
 	player.format = PLAYER_FORMAT;
 	player.height = PLAYER_HEIGHT;
 	player.width = PLAYER_WIDTH;
 	player.data = PLAYER_DATA;
 	player.mipmaps = 1;
-
 	user = LoadTextureFromImage(player);
 
-    spacegoomba = LoadTexture("res/badguy.png");
+    
+    //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
-    background = LoadTexture("res/background.png");
-    speedster = LoadTexture("res/speedplayer.png");
+    //background = LoadTexture("res/background.png");
+    //speedster = LoadTexture("res/speedplayer.png");
 
     Gameloop();
 

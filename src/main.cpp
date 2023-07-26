@@ -11,6 +11,14 @@ int main(int argc, char ** argv){
     img = LoadImage("res/badguy.png");
     ExportImageAsCode(img, "badguy.h");
     UnloadImage(img);
+
+	img = LoadImage("res/background.png");
+	ExportImageAsCode(img, "background.h");
+	UnloadImage(img);
+
+	img = LoadImage("res/speedplayer.png");
+	ExportImageAsCode(img, "speedplayer.h");
+	UnloadImage(img);
 	
 	Game game; // New game instance
 
