@@ -1,13 +1,12 @@
 #include "bullet.hpp"
 
-// Bullet class implementation
-
-// Function: fire
-// Description: Fires a bullet from the player's position with a given acceleration.
-// Parameters:
-//   - position: The initial position of the player.
-//   - accelerationUp: The acceleration of the bullet in the upward direction.
-//   - accelerationRight: The acceleration of the bullet in the right direction.
+/*
+  Description: Fires a bullet from the player's position with a given acceleration.
+  Parameters:
+  - position: The initial position of the player.
+  - accelerationUp: The acceleration of the bullet in the upward direction.
+  - accelerationRight: The acceleration of the bullet in the right direction.
+ */
 void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight) {
     // Player shoot logic
     if (IsKeyPressed(KEY_Q)) { // TODO: Allow shooting from a stopped state
@@ -70,10 +69,11 @@ void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRigh
     DrawText(TextFormat("Goombas left: %2d", MAX_ENEMIES - goombasDown), position.x - 100, position.y - 400, 42, WHITE);
 }
 
-// Function: speed
-// Description: Adjusts the player's speed.
-// Parameters:
-//   - playerspeed: Reference to the player's speed, which will be modified by the function.
+/*
+  Description: Adjusts the player's speed.
+  Parameters:
+  - playerspeed: Reference to the player's speed, which will be modified by the function.
+ */
 void Bullet::speed(float& playerspeed) {
     playerspeed = 1.5f; // Set the player's speed to 1.5 units
 }
