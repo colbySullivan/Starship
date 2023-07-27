@@ -54,7 +54,7 @@ void Game::Gameloop() {
     // Game settings
     GAME_TIME = 20;
     Movement move;
-    position = {2500, 2500}; // Initial player position
+    this->position = {5000, 5000}; // Initial player position
     playerRotation = 0; // Initial player rotation
     float playerSpeed = 2.0f; // Player movement speed
     Health = 0; // Player health
@@ -123,7 +123,7 @@ void Game::Gameloop() {
                 PosX = GetRandomValue(100, 10000 - spacegoomba.height);
                 PosY = GetRandomValue(100, 10000 - spacegoomba.height);
 
-                spacegoomba = LoadTexture("res/badguy.png");
+                //spacegoomba = LoadTexture("res/badguy.png");
             }
         }
 
@@ -143,12 +143,12 @@ void Game::CreateWindow() {
     // Set the window icon
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
-
-    embedResources();    
+   
     //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
     //background = LoadTexture("res/background.png");
     //speedster = LoadTexture("res/speedplayer.png");
+    embedResources();
 
     Gameloop();
 
@@ -203,7 +203,7 @@ void Game::drawPlayer(Texture2D& Texture, Vector2& position, uint16_t rotation) 
 /*
   Description: Entry point for running the game.
  */
-void Game::RunGame() {
+void Game::RunGame() { 
     CreateWindow();
 }
 /*
@@ -234,7 +234,7 @@ void Game::embedResources(){
 	background.width = BACKGROUND_WIDTH;
 	background.data = BACKGROUND_DATA;
 	background.mipmaps = 1;
-	back = LoadTexture("res/background.png");
+	back = LoadTextureFromImage(background);
 
     Image badguy = { 0 };
 	badguy.format = BADGUY_FORMAT;
@@ -242,7 +242,7 @@ void Game::embedResources(){
 	badguy.width = BADGUY_WIDTH;
 	badguy.data = BADGUY_DATA;
 	badguy.mipmaps = 1;
-	spacegoomba = LoadTexture("res/background.png");
+	spacegoomba = LoadTextureFromImage(badguy);
 
     Image speedplayer = { 0 };
 	speedplayer.format = SPEEDPLAYER_FORMAT;
@@ -250,5 +250,5 @@ void Game::embedResources(){
 	speedplayer.width = SPEEDPLAYER_WIDTH;
 	speedplayer.data = SPEEDPLAYER_DATA;
 	speedplayer.mipmaps = 1;
-    speedster = LoadTexture("res/speedplayer.png");
+    speedster = LoadTextureFromImage(speedplayer);
 }
