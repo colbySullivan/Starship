@@ -144,24 +144,7 @@ void Game::CreateWindow() {
     icon = LoadImage("res/icon.png");
     SetWindowIcon(icon);
 
-    // load player
-	Image player = { 0 };
-	player.format = PLAYER_FORMAT;
-	player.height = PLAYER_HEIGHT;
-	player.width = PLAYER_WIDTH;
-	player.data = PLAYER_DATA;
-	player.mipmaps = 1;
-	user = LoadTextureFromImage(player);
-
-    Image background = { 0 };
-	background.format = BACKGROUND_FORMAT;
-	background.height = BACKGROUND_HEIGHT;
-	background.width = BACKGROUND_WIDTH;
-	background.data = BACKGROUND_DATA;
-	background.mipmaps = 1;
-	back = LoadTexture("res/background.png");
-
-
+    embedResources();    
     //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
     //background = LoadTexture("res/background.png");
@@ -232,4 +215,32 @@ void Game::RunGame() {
 void Game::UpdateCameraCenter(Camera2D* camera, Vector2 position) {
     camera->offset = midscreen;
     camera->target = position;
+}
+
+void Game::embedResources(){
+    // load player
+	Image player = { 0 };
+	player.format = PLAYER_FORMAT;
+	player.height = PLAYER_HEIGHT;
+	player.width = PLAYER_WIDTH;
+	player.data = PLAYER_DATA;
+	player.mipmaps = 1;
+	user = LoadTextureFromImage(player);
+
+    // load background
+    Image background = { 0 };
+	background.format = BACKGROUND_FORMAT;
+	background.height = BACKGROUND_HEIGHT;
+	background.width = BACKGROUND_WIDTH;
+	background.data = BACKGROUND_DATA;
+	background.mipmaps = 1;
+	back = LoadTexture("res/background.png");
+
+    Image badguy = { 0 };
+	badguy.format = BADGUY_FORMAT;
+	badguy.height = BADGUY_HEIGHT;
+	badguy.width = BADGUY_WIDTH;
+	badguy.data = BADGUY_DATA;
+	badguy.mipmaps = 1;
+	spacegoomba = LoadTexture("res/background.png");
 }

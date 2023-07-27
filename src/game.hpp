@@ -12,6 +12,8 @@ public:
     void RunGame();
     void UpdateCameraCenter(Camera2D* camera, Vector2 position);
     void EndScreen();
+    void embedResources();
+    void createHeaders();
 
 private:
     int GAME_TIME;           // The total game time in seconds.
