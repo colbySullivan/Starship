@@ -1,9 +1,10 @@
 #include "game.hpp"
 #include "main.hpp"
 #include "movement.hpp"
-#include "player.h"
-#include "badguy.h"
-#include "background.h"
+#include "embededRes/player.h"
+#include "embededRes/badguy.h"
+#include "embededRes/background.h"
+#include "embededRes/speedplayer.h"
 #include <iostream>
 
 /*

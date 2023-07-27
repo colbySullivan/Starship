@@ -9,7 +9,7 @@ int main(int argc, char ** argv){
 	UnloadImage(img);
 
     img = LoadImage("res/badguy.png");
-    ExportImageAsCode(img, "badguy.h");
+    ExportImageAsCode(img, "embededbadguy.h");
     UnloadImage(img);
 
 	img = LoadImage("res/background.png");
