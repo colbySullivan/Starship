@@ -243,4 +243,12 @@ void Game::embedResources(){
 	badguy.data = BADGUY_DATA;
 	badguy.mipmaps = 1;
 	spacegoomba = LoadTexture("res/background.png");
+
+    Image speedplayer = { 0 };
+	speedplayer.format = SPEEDPLAYER_FORMAT;
+	speedplayer.height = SPEEDPLAYER_HEIGHT;
+	speedplayer.width = SPEEDPLAYER_WIDTH;
+	speedplayer.data = SPEEDPLAYER_DATA;
+	speedplayer.mipmaps = 1;
+    speedster = LoadTexture("res/speedplayer.png");
 }
