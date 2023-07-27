@@ -5,6 +5,7 @@
 #include "embededRes/badguy.h"
 #include "embededRes/background.h"
 #include "embededRes/speedplayer.h"
+#include "embededRes/iconLogo.h"
 #include <iostream>
 
 /*
@@ -140,15 +141,19 @@ void Game::CreateWindow() {
     //ToggleFullscreen();
     HideCursor();
 
+    embedResources();
     // Set the window icon
-    icon = LoadImage("res/icon.png");
-    SetWindowIcon(icon);
+    SetWindowIcon(iconLogo);
    
     //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
     //background = LoadTexture("res/background.png");
     //speedster = LoadTexture("res/speedplayer.png");
-    embedResources();
+
+    /*
+      Uncomment createHeaders to recompile image header files
+    */
+    //createHeaders();
 
     Gameloop();
 
@@ -217,6 +222,10 @@ void Game::UpdateCameraCenter(Camera2D* camera, Vector2 position) {
     camera->target = position;
 }
 
+/*
+  Description: Embed images into executable using header files
+  containing image pixel data
+  */
 void Game::embedResources(){
     // load player
 	Image player = { 0 };
@@ -236,6 +245,7 @@ void Game::embedResources(){
 	background.mipmaps = 1;
 	back = LoadTextureFromImage(background);
 
+    // load goomba
     Image badguy = { 0 };
 	badguy.format = BADGUY_FORMAT;
 	badguy.height = BADGUY_HEIGHT;
@@ -244,6 +254,7 @@ void Game::embedResources(){
 	badguy.mipmaps = 1;
 	spacegoomba = LoadTextureFromImage(badguy);
 
+    //load speed ship
     Image speedplayer = { 0 };
 	speedplayer.format = SPEEDPLAYER_FORMAT;
 	speedplayer.height = SPEEDPLAYER_HEIGHT;
@@ -251,4 +262,39 @@ void Game::embedResources(){
 	speedplayer.data = SPEEDPLAYER_DATA;
 	speedplayer.mipmaps = 1;
     speedster = LoadTextureFromImage(speedplayer);
+
+    //load icon
+    iconLogo = { 0 };
+	iconLogo.format = ICONLOGO_FORMAT;
+	iconLogo.height = ICONLOGO_HEIGHT;
+	iconLogo.width = ICONLOGO_WIDTH;
+	iconLogo.data = ICONLOGO_DATA;
+	iconLogo.mipmaps = 1;
+    
+}
+
+/*
+  Description: Create header files that contain image pixel data
+  in the form of an array of bytes
+  */
+void Game::createHeaders() {
+    Image img = LoadImage("res/player.png");
+	ExportImageAsCode(img, "player.h");
+	UnloadImage(img);
+
+    img = LoadImage("res/badguy.png");
+    ExportImageAsCode(img, "embededbadguy.h");
+    UnloadImage(img);
+
+	img = LoadImage("res/background.png");
+	ExportImageAsCode(img, "background.h");
+	UnloadImage(img);
+
+	img = LoadImage("res/speedplayer.png");
+	ExportImageAsCode(img, "speedplayer.h");
+	UnloadImage(img);
+
+    img = LoadImage("res/icon.png");
+	ExportImageAsCode(img, "iconLogo.h");
+	UnloadImage(img);
 }

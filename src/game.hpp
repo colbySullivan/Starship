@@ -26,7 +26,7 @@ private:
     Camera2D camera;         // The camera to handle the view of the game.
     bool gamestart = false;  // Flag to indicate if the game has started.
     int startTime;           // The starting time of the game.
-    Image icon;              // Image for the window icon.
+    Image iconLogo;              // Image for the window icon.
     float PosX;              // X position of the enemy (goomba).
     float PosY;              // Y position of the enemy (goomba).
     float rotategoomba;      // Rotation angle for the enemy (goomba).
