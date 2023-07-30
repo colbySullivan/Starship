@@ -15,6 +15,7 @@
  - ~~Pause/Title screen~~
  - ~~Enemy collision~~
  - ~~Points system~~
+ - Embed images
   ### Ongoing
  - Levels
  - Issues
