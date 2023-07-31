@@ -2,13 +2,19 @@
 #include "main.hpp"
 #include "movement.hpp"
 #include <iostream>
+//Images
+#include "embededRes/player.h"
+#include "embededRes/badguy.h"
+#include "embededRes/background.h"
+#include "embededRes/speedplayer.h"
+#include "embededRes/iconLogo.h"
 
 /*
   Description: Draws the game objects on the screen, such as the health and background.
  */
 void Game::DrawObject() {
     DrawText(TextFormat("Health = %d", Health), position.x, position.y, 42, WHITE);
-    DrawTextureEx(background, {0, 0}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(back, {0, 0}, 0.0f, 10.0f, WHITE);
 }
 /*
   Description: Draws the end game screen when the game is over.
@@ -50,7 +56,7 @@ void Game::Gameloop() {
     // Game settings
     GAME_TIME = 20;
     Movement move;
-    position = {2500, 2500}; // Initial player position
+    this->position = {5000, 5000}; // Initial player position
     playerRotation = 0; // Initial player rotation
     float playerSpeed = 2.0f; // Player movement speed
     Health = 0; // Player health
@@ -119,7 +125,7 @@ void Game::Gameloop() {
                 PosX = GetRandomValue(100, 10000 - spacegoomba.height);
                 PosY = GetRandomValue(100, 10000 - spacegoomba.height);
 
-                spacegoomba = LoadTexture("res/badguy.png");
+                //spacegoomba = LoadTexture("res/badguy.png");
             }
         }
 
@@ -136,21 +142,26 @@ void Game::CreateWindow() {
     //ToggleFullscreen();
     HideCursor();
 
+    embedResources();
     // Set the window icon
-    icon = LoadImage("res/icon.png");
-    SetWindowIcon(icon);
+    SetWindowIcon(iconLogo);
+   
+    //spacegoomba = LoadTexture("res/badguy.png");
+    //user = LoadTexture("res/player.png");
+    //background = LoadTexture("res/background.png");
+    //speedster = LoadTexture("res/speedplayer.png");
 
-    spacegoomba = LoadTexture("res/badguy.png");
-    user = LoadTexture("res/player.png");
-    background = LoadTexture("res/background.png");
-    speedster = LoadTexture("res/speedplayer.png");
+    /*
+      Uncomment createHeaders to recompile image header files
+    */
+    //createHeaders();
 
     Gameloop();
 
     // Unload resources
     UnloadTexture(user);
     UnloadTexture(spacegoomba);
-    UnloadTexture(background);
+    UnloadTexture(back);
     CloseWindow();
 }
 
@@ -198,7 +209,7 @@ void Game::drawPlayer(Texture2D& Texture, Vector2& position, uint16_t rotation) 
 /*
   Description: Entry point for running the game.
  */
-void Game::RunGame() {
+void Game::RunGame() { 
     CreateWindow();
 }
 /*
@@ -210,4 +221,81 @@ void Game::RunGame() {
 void Game::UpdateCameraCenter(Camera2D* camera, Vector2 position) {
     camera->offset = midscreen;
     camera->target = position;
+}
+
+/*
+  Description: Embed images into executable using header files
+  containing image pixel data
+  */
+void Game::embedResources(){
+    // load player
+	Image player = { 0 };
+	player.format = PLAYER_FORMAT;
+	player.height = PLAYER_HEIGHT;
+	player.width = PLAYER_WIDTH;
+	player.data = PLAYER_DATA;
+	player.mipmaps = 1;
+	user = LoadTextureFromImage(player);
+
+    // load background
+    Image background = { 0 };
+	background.format = BACKGROUND_FORMAT;
+	background.height = BACKGROUND_HEIGHT;
+	background.width = BACKGROUND_WIDTH;
+	background.data = BACKGROUND_DATA;
+	background.mipmaps = 1;
+	back = LoadTextureFromImage(background);
+
+    // load goomba
+    Image badguy = { 0 };
+	badguy.format = BADGUY_FORMAT;
+	badguy.height = BADGUY_HEIGHT;
+	badguy.width = BADGUY_WIDTH;
+	badguy.data = BADGUY_DATA;
+	badguy.mipmaps = 1;
+	spacegoomba = LoadTextureFromImage(badguy);
+
+    //load speed ship
+    Image speedplayer = { 0 };
+	speedplayer.format = SPEEDPLAYER_FORMAT;
+	speedplayer.height = SPEEDPLAYER_HEIGHT;
+	speedplayer.width = SPEEDPLAYER_WIDTH;
+	speedplayer.data = SPEEDPLAYER_DATA;
+	speedplayer.mipmaps = 1;
+    speedster = LoadTextureFromImage(speedplayer);
+
+    //load icon
+    iconLogo = { 0 };
+	iconLogo.format = ICONLOGO_FORMAT;
+	iconLogo.height = ICONLOGO_HEIGHT;
+	iconLogo.width = ICONLOGO_WIDTH;
+	iconLogo.data = ICONLOGO_DATA;
+	iconLogo.mipmaps = 1;
+    
+}
+
+/*
+  Description: Create header files that contain image pixel data
+  in the form of an array of bytes
+  */
+void Game::createHeaders() {
+    Image img = LoadImage("res/player.png");
+	ExportImageAsCode(img, "player.h");
+	UnloadImage(img);
+
+    img = LoadImage("res/badguy.png");
+    ExportImageAsCode(img, "embededbadguy.h");
+    UnloadImage(img);
+
+	img = LoadImage("res/background.png");
+	ExportImageAsCode(img, "background.h");
+	UnloadImage(img);
+
+	img = LoadImage("res/speedplayer.png");
+	ExportImageAsCode(img, "speedplayer.h");
+	UnloadImage(img);
+
+    img = LoadImage("res/icon.png");
+	ExportImageAsCode(img, "iconLogo.h");
+	UnloadImage(img);
 }
