@@ -109,7 +109,7 @@ void Game::Gameloop() {
                 // TODO: Unload textures when used, there is a texture bug.
                 EndScreen();
             } else {
-                uint8_t playerDirection = move.manageMovement(position, playerSpeed, deltaTime, user, speedster, buffer);
+                uint8_t playerDirection = move.manageMovement(position, playerSpeed, deltaTime, user, speedster, buffer, spacegoomba);
                 move.manageRotation(playerRotation, playerDirection);
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
                 DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);

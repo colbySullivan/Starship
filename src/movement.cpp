@@ -57,7 +57,7 @@ void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
   - speedster: Texture for the player's speedster.
   Returns: The rotation flags representing the player's movement direction.
  */
-uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster, Texture2D TextureBuffer){
+uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster, Texture2D TextureBuffer, Texture2D spacegoomba){
 	uint8_t rotationFlags = 0;
 
 	// Managing player movement and return rotation flags
@@ -100,7 +100,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	position.x += (playerSpeed * accelerationRight);
     position.y -= (playerSpeed * accelerationUp);
 	
-	ship.fire(position, accelerationUp, accelerationRight); // Shooting logical call
+	ship.fire(position, accelerationUp, accelerationRight, spacegoomba); // Shooting logical call
 	checkWallCollision(position);
 
 	return rotationFlags;

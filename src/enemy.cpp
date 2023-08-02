@@ -7,13 +7,14 @@
 Return:
   - The number of defeated goombas.
  */
-int Enemy::goombaCollision(Vector2 bulletPos) {
+int Enemy::goombaCollision(Vector2 bulletPos, Texture spacegoomba) {
     // Initialize goombas if not already done.
-    this->initGoombas();
+    //this->initGoombas(spacegoomba);
 
     for (int i = 0; i < MAX_ENEMIES; i++) {
         if (Enemy[i].active) {
             // Draw the active goombas on the screen.
+            Enemy[i].texture = spacegoomba;
             DrawTextureEx(Enemy[i].texture, {Enemy[i].randX, Enemy[i].randY}, 0.0f, 5.0f, WHITE);
 
             // Calculate the distance between the bullet and the current goomba.
@@ -35,7 +36,7 @@ int Enemy::goombaCollision(Vector2 bulletPos) {
 /*
   Description: Initializes the goombas and their textures.
  */
-void Enemy::initGoombas() {
+void Enemy::initGoombas(Texture2D spacegoomba) {
     for (int i = 0; i < MAX_ENEMIES; i++) { 
         Enemy[i].texture = spacegoomba; // Assign the texture to each goomba.
         //Enemy[i].active = true; // TODO: Reset goombas if needed.

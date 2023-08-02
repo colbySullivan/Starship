@@ -7,7 +7,7 @@
   - accelerationUp: The acceleration of the bullet in the upward direction.
   - accelerationRight: The acceleration of the bullet in the right direction.
  */
-void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight) {
+void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight, Texture2D spacegoomba) {
     // Player shoot logic
     if (IsKeyPressed(KEY_Q)) { // TODO: Allow shooting from a stopped state
         for (int i = 0; i < MAX_BULLETS; i++) {
@@ -61,7 +61,7 @@ void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRigh
             DrawCircleV(shoot[i].xy, 5, shoot[i].color);
 
         // Enemy creation logic - Check for collisions with the created bullets
-        goombasDown = goomba.goombaCollision(shoot[i].xy);
+        goombasDown = goomba.goombaCollision(shoot[i].xy, spacegoomba);
     }
 
     // Draw the number of bullets remaining and the number of remaining enemies
