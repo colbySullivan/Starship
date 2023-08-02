@@ -12,4 +12,5 @@ class Movement{
         Bullet ship;                 // Instance of the Bullet class for player shooting.
         float accelerationUp;        // Acceleration value for player's upward movement.
         float accelerationRight;     // Acceleration value for player's rightward movement.
+        Texture2D TextureBuffer = LoadTexture("res/player.png");
 };
