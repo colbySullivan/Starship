@@ -36,4 +36,4 @@ Cmake -G Ninja ..
 ninjanmnn
 ```
 
-and if all went well the executable should be in "build/bin/Eat-the-mushroom
+and if all went well the executable should be in "build/bin/Starship.exe
