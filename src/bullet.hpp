@@ -17,8 +17,8 @@ class Bullet {
 
 public:
     Texture2D trajectile;       // Texture representing the bullet's appearance.
-    void fire(Vector2 position, float accelerationUp, float accelerationRight);
-    void speed(float& playerspeed);
+    void fire(Vector2 , float , float , Texture2D);
+    void speed(float&);
 private:
     Enemy goomba;           // Instance of the Enemy class to handle enemy interactions.
     int bulletsShot = 0;    // The number of bullets currently active and flying in the scene.

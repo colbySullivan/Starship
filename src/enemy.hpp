@@ -16,11 +16,10 @@ class Enemy {
     Goomba Enemy[MAX_ENEMIES]; // Array to store multiple enemies (Goombas).
 
 public:
-    int goombaCollision(Vector2 bulletPos);
-    void initGoombas();
+    int goombaCollision(Vector2, Texture2D);
+    void initGoombas(Texture2D);
 
 private:
-    Texture2D spacegoomba = LoadTexture("res/badguy.png"); // Texture for the Goomba enemy.
     int distance; // Distance between the bullet and the enemy.
     int goombasDown = 0; // The number of defeated goombas.
 };

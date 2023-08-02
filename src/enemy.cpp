@@ -7,9 +7,9 @@
 Return:
   - The number of defeated goombas.
  */
-int Enemy::goombaCollision(Vector2 bulletPos) {
+int Enemy::goombaCollision(Vector2 bulletPos, Texture2D spacegoomba) {
     // Initialize goombas if not already done.
-    this->initGoombas();
+    this->initGoombas(spacegoomba);
 
     for (int i = 0; i < MAX_ENEMIES; i++) {
         if (Enemy[i].active) {
@@ -35,7 +35,7 @@ int Enemy::goombaCollision(Vector2 bulletPos) {
 /*
   Description: Initializes the goombas and their textures.
  */
-void Enemy::initGoombas() {
+void Enemy::initGoombas(Texture2D spacegoomba) {
     for (int i = 0; i < MAX_ENEMIES; i++) { 
         Enemy[i].texture = spacegoomba; // Assign the texture to each goomba.
         //Enemy[i].active = true; // TODO: Reset goombas if needed.
