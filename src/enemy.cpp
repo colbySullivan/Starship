@@ -9,11 +9,12 @@ Return:
  */
 int Enemy::goombaCollision(Vector2 bulletPos, Texture spacegoomba) {
     // Initialize goombas if not already done.
-    this->initGoombas(spacegoomba);
+    //this->initGoombas(spacegoomba);
 
     for (int i = 0; i < MAX_ENEMIES; i++) {
         if (Enemy[i].active) {
             // Draw the active goombas on the screen.
+            Enemy[i].texture = spacegoomba;
             DrawTextureEx(Enemy[i].texture, {Enemy[i].randX, Enemy[i].randY}, 0.0f, 5.0f, WHITE);
 
             // Calculate the distance between the bullet and the current goomba.
