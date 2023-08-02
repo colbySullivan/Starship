@@ -71,9 +71,10 @@ void Game::Gameloop() {
     camera.rotation = 0.0f;
     camera.zoom = 0.75f;
     int cameraOption = 0; // Default center
-
-    // Vector2 startXY;
     Vector2 startXY = {0, 0};
+
+    // Used in movement to switch ship back from boost
+    Texture2D buffer = user; 
 
     while (!WindowShouldClose()) {
         camera.zoom += ((float)GetMouseWheelMove() * 0.05f);
@@ -108,7 +109,7 @@ void Game::Gameloop() {
                 // TODO: Unload textures when used, there is a texture bug.
                 EndScreen();
             } else {
-                uint8_t playerDirection = move.manageMovement(position, playerSpeed, deltaTime, user, speedster);
+                uint8_t playerDirection = move.manageMovement(position, playerSpeed, deltaTime, user, speedster, buffer);
                 move.manageRotation(playerRotation, playerDirection);
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
                 DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);
@@ -142,14 +143,21 @@ void Game::CreateWindow() {
     //ToggleFullscreen();
     HideCursor();
 
+    /*
+      Comment out if images are dynamically compiled
+    */
     embedResources();
-    // Set the window icon
-    SetWindowIcon(iconLogo);
-   
+
+    /*
+      Uncomment to compile images dynamically from resource file
+    */
     //spacegoomba = LoadTexture("res/badguy.png");
     //user = LoadTexture("res/player.png");
     //background = LoadTexture("res/background.png");
     //speedster = LoadTexture("res/speedplayer.png");
+    // Set the window icon
+
+    SetWindowIcon(iconLogo);
 
     /*
       Uncomment createHeaders to recompile image header files
@@ -162,6 +170,7 @@ void Game::CreateWindow() {
     UnloadTexture(user);
     UnloadTexture(spacegoomba);
     UnloadTexture(back);
+    UnloadTexture(speedster);
     CloseWindow();
 }
 

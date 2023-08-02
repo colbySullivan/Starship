@@ -57,9 +57,8 @@ void Movement::manageRotation(uint16_t &rotation, uint8_t rotationFlags){
   - speedster: Texture for the player's speedster.
   Returns: The rotation flags representing the player's movement direction.
  */
-uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster){
+uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &deltaTime, Texture2D &player, Texture2D speedster, Texture2D TextureBuffer){
 	uint8_t rotationFlags = 0;
-	//Texture2D TextureBuffer = LoadTexture("res/player.png");
 
 	// Managing player movement and return rotation flags
 	if (IsKeyDown(KEY_RIGHT)){
@@ -88,7 +87,7 @@ uint8_t Movement::manageMovement(Vector2 &position, float &playerSpeed, float &d
 	}
 	else{
 		playerSpeed = 1.0f; // reset speed after space
-		//player = TextureBuffer; // TODO texture bug causes static background
+		player = TextureBuffer; // TODO texture bug causes static background
 
 		// Deceleration
 		if (accelerationRight > 0) accelerationRight -= 0.001f;
