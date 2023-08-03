@@ -38,7 +38,7 @@ void Game::TitleScreen(Vector2& startXY) {
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
 
     // Animate the "speedster" texture on the title screen.
-    startXY.x += 0.1;
+    startXY.x += 0.5;
     if (startXY.x > 900)
         startXY.x = 0;
     DrawTextureEx(speedster, startXY, 0.1f, 5.0f, WHITE);
@@ -57,7 +57,7 @@ void Game::Gameloop() {
     GAME_TIME = 30;
     Movement move;
     Vector2 startPos = {5000, 5000};
-    this->position = startPos; // Initial player position
+    position = startPos; // Initial player position
     playerRotation = 0; // Initial player rotation
     float playerSpeed = 2.0f; // Player movement speed
     Health = 0; // Player health
@@ -132,7 +132,7 @@ void Game::CreateWindow() {
     /*
       Comment out if images are dynamically compiled
     */
-    embedResources(); // Images are embedded into executable//
+    embedResources(); // Images are embedded into executable
 
     /*
       Uncomment to compile images dynamically from resource file
