@@ -117,6 +117,18 @@ void Game::Gameloop() {
                 DrawText("Press E to boost", position.x - 750, position.y - 450, 25, WHITE);
             }
 
+            distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
+            if (distance < 300) {
+                Health++;
+
+                UnloadTexture(spacegoomba);
+
+                // Respawn the enemy with a new random position.
+                PosX = GetRandomValue(100, 10000 - spacegoomba.height);
+                PosY = GetRandomValue(100, 10000 - spacegoomba.height);
+
+                //spacegoomba = LoadTexture("res/badguy.png");
+            }
         }
 
         EndMode2D();
@@ -147,6 +159,11 @@ void Game::CreateWindow() {
     // Set the window icon
 
     SetWindowIcon(iconLogo);
+
+    /*
+      Uncomment createHeaders to recompile image header files
+    */
+    //createHeaders();
 
     Gameloop();
 
