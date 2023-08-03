@@ -7,7 +7,7 @@
   - accelerationUp: The acceleration of the bullet in the upward direction.
   - accelerationRight: The acceleration of the bullet in the right direction.
  */
-void Bullet::fire(Vector2 position, float accelerationUp, float accelerationRight, Texture2D spacegoomba) {
+void Bullet::fire(Vector2& position, float accelerationUp, float accelerationRight, Texture2D spacegoomba) {
     // Player shoot logic
     if (IsKeyPressed(KEY_Q)) { // TODO: Allow shooting from a stopped state
         for (int i = 0; i < MAX_BULLETS; i++) {

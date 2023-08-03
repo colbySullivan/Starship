@@ -11,3 +11,4 @@ build/*
 build-linux/
 
 !build/res/
+!Starship.exe

@@ -38,7 +38,7 @@ void Game::TitleScreen(Vector2& startXY) {
     DrawText("Press Space To Play!", 50, 500, 64, WHITE);
 
     // Animate the "speedster" texture on the title screen.
-    startXY.x += 0.1;
+    startXY.x += 0.5;
     if (startXY.x > 900)
         startXY.x = 0;
     DrawTextureEx(speedster, startXY, 0.1f, 5.0f, WHITE);
@@ -54,15 +54,14 @@ void Game::TitleScreen(Vector2& startXY) {
  */
 void Game::Gameloop() {
     // Game settings
-    GAME_TIME = 20;
+    GAME_TIME = 30;
     Movement move;
-    this->position = {5000, 5000}; // Initial player position
+    Vector2 startPos = {5000, 5000};
+    position = startPos; // Initial player position
     playerRotation = 0; // Initial player rotation
     float playerSpeed = 2.0f; // Player movement speed
     Health = 0; // Player health
-    PosX = GetRandomValue(500, 22500 - spacegoomba.width); // Random initial X position for the enemy.
-    PosY = GetRandomValue(400, 10500 - spacegoomba.height); // Random initial Y position for the enemy.
-
+    
     // Initialize camera
     camera = {0};
     camera.target = position;
@@ -88,7 +87,10 @@ void Game::Gameloop() {
         // Move camera with the player
         UpdateCameraCenter(&camera, position);
 
+        // TODO: Something with the these two commands is
+        // causing the out of bounds error
         BeginDrawing();
+        BeginMode2D(camera);
 
         if (!gamestart) {
             TitleScreen(startXY);
@@ -96,7 +98,6 @@ void Game::Gameloop() {
             gamestart = false;
         } else {
             ClearBackground(GetColor(0x052c46ff));
-            BeginMode2D(camera);
 
             DrawObject();
             drawPlayer(user, position, playerRotation);
@@ -114,19 +115,6 @@ void Game::Gameloop() {
                 DrawText(TextFormat("Timer : %02ds", timeLeft), position.x - 100, position.y - 500, 42, WHITE);
                 DrawText("Press Q to shoot", position.x - 750, position.y - 500, 25, WHITE);
                 DrawText("Press E to boost", position.x - 750, position.y - 450, 25, WHITE);
-            }
-
-            distance = sqrt(pow(position.x - PosX, 2) + pow(position.y - PosY, 2));
-            if (distance < 300) {
-                Health++;
-
-                UnloadTexture(spacegoomba);
-
-                // Respawn the enemy with a new random position.
-                PosX = GetRandomValue(100, 10000 - spacegoomba.height);
-                PosY = GetRandomValue(100, 10000 - spacegoomba.height);
-
-                //spacegoomba = LoadTexture("res/badguy.png");
             }
         }
 
@@ -146,7 +134,7 @@ void Game::CreateWindow() {
     /*
       Comment out if images are dynamically compiled
     */
-    embedResources();
+    embedResources(); // Images are embedded into executable
 
     /*
       Uncomment to compile images dynamically from resource file

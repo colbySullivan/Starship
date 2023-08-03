@@ -6,11 +6,11 @@ class Game {
 public:
     void CreateWindow();
     void Gameloop();
-    void TitleScreen(Vector2& startXY);
+    void TitleScreen(Vector2&);
     void DrawObject();
-    void drawPlayer(Texture2D& Texture, Vector2& position, uint16_t rotation);
+    void drawPlayer(Texture2D& , Vector2& , uint16_t);
     void RunGame();
-    void UpdateCameraCenter(Camera2D* camera, Vector2 position);
+    void UpdateCameraCenter(Camera2D* , Vector2);
     void EndScreen();
     void embedResources();
     void createHeaders();
