@@ -56,7 +56,8 @@ void Game::Gameloop() {
     // Game settings
     GAME_TIME = 20;
     Movement move;
-    this->position = {5000, 5000}; // Initial player position
+    Vector2 startPos = {5000, 5000};
+    this->position = startPos; // Initial player position
     playerRotation = 0; // Initial player rotation
     float playerSpeed = 2.0f; // Player movement speed
     Health = 0; // Player health
