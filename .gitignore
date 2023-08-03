@@ -7,7 +7,6 @@
 *.o
 *.a
 *.dylib
-build/*
 build-linux/
 
 !build/res/
