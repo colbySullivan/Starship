@@ -87,7 +87,10 @@ void Game::Gameloop() {
         // Move camera with the player
         UpdateCameraCenter(&camera, position);
 
+        // TODO: Something with the these two commands is
+        // causing the out of bounds error
         BeginDrawing();
+        BeginMode2D(camera);
 
         if (!gamestart) {
             TitleScreen(startXY);
@@ -95,7 +98,6 @@ void Game::Gameloop() {
             gamestart = false;
         } else {
             ClearBackground(GetColor(0x052c46ff));
-            BeginMode2D(camera);
 
             DrawObject();
             drawPlayer(user, position, playerRotation);
