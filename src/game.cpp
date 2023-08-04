@@ -3,11 +3,11 @@
 #include "movement.hpp"
 #include <iostream>
 //Images
-#include "embededRes/player.h"
-#include "embededRes/badguy.h"
-#include "embededRes/background.h"
-#include "embededRes/speedplayer.h"
-#include "embededRes/iconLogo.h"
+#include "embededRes/player.hpp"
+#include "embededRes/badguy.hpp"
+#include "embededRes/background.hpp"
+#include "embededRes/speedplayer.hpp"
+#include "embededRes/iconLogo.hpp"
 
 /*
   Description: Draws the game objects on the screen, such as the health and background.
