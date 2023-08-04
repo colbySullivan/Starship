@@ -14,8 +14,8 @@
  - ~~Projectiles~~
  - ~~Pause/Title screen~~
  - ~~Enemy collision~~
- - ~~Points system~~
- - Embed images
+ - ~~Embed images~~
+ - Points system
   ### Ongoing
  - Levels
  - Issues
