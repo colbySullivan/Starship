@@ -20,6 +20,9 @@
  - Levels
  - Issues
 
+## Releases
+Currently a fix for the out of bounds errors is set for the next update.
+
 ## Demo
 ![newDemo](https://github.com/colbySullivan/Starship/assets/88957296/cd76f29f-8619-4827-8f18-30512fc72ccb)
 
